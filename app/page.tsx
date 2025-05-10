@@ -1,8 +1,11 @@
+"use client";
+
+import { Button } from "@/components/ui/button";
 import React from "react";
 
 const HomePage = () => {
   return (
-    <div>
+    <div className="p-4">
       <div className="absolute top-0 right-0 w-[100vw] z-[-1]">
         <div className="relative w-full h-screen">
           <img
@@ -20,13 +23,15 @@ const HomePage = () => {
             Welcome to Xolmili
           </h1>
           <p className="text-xl mb-8 max-w-2xl animate-slide-up">
-            Pioneering the future of iron-making technology with cutting-edge
-            innovations and location-based solutions. At Xolmili, we forge
-            excellence and sustainability into every product.
+            There&ldquo;s more to a great car than just clever engineering. It
+            has to be sturdy, reliable, and make your life a little easier.
           </p>
-          <button className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-blue-600 hover:to-cyan-500 text-white font-bold py-3 px-6 rounded-full shadow-lg transition-transform transform hover:scale-105 animate-bounce">
+          <Button
+            onClick={() => (window.location.href = "/about")}
+            className="bg-gradient-to-r cursor-pointer duration-500 from-cyan-500 to-blue-600 hover:from-blue-600 hover:to-cyan-500 text-white font-bold py-3 px-6 rounded-full shadow-lg transition-transform transform hover:scale-105 animate-bounce"
+          >
             Get Started
-          </button>
+          </Button>
         </div>
       </div>
     </div>

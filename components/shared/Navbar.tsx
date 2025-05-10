@@ -16,13 +16,13 @@ const Navbar = () => {
           <Button className="text-white" variant="link">
             <Link href="/">Home</Link>
           </Button>
-          <Button className="text-white" variant="ghost">
+          <Button className="text-white" variant="link">
             <a href="/about">About</a>
           </Button>
-          <Button className="text-white" variant="ghost">
+          <Button className="text-white" variant="link">
             <a href="/price">Price Offers</a>
           </Button>
-          <Button className="text-white" variant="ghost">
+          <Button className="text-white" variant="link">
             <a href="/contact">Contact</a>
           </Button>
         </div>

@@ -1,30 +1,125 @@
-import React from "react";
+"use client";
 
-const ContactPage = () => {
+import { motion } from "framer-motion";
+import {
+  Clock10Icon,
+  InstagramIcon,
+  MailIcon,
+  PhoneCallIcon,
+} from "lucide-react";
+
+export default function ContactPage() {
+  const contactDetails = [
+    {
+      icon: MailIcon,
+      label: "Email",
+      value: "xolmili@gmail.com",
+      link: "mailto:xolmili@gmail.com",
+    },
+    {
+      icon: PhoneCallIcon,
+      label: "Whatsapp",
+      value: "+994 70 504 88 88",
+      link: "tel:+994705048888",
+    },
+    {
+      icon: InstagramIcon,
+      label: "Instagram",
+      value: "xolmili.az",
+      link: "https://www.instagram.com/xolmili.az/",
+    },
+    {
+      icon: Clock10Icon,
+      label: "Working Hours",
+      value: "Mon-Fri, 9 AM - 6 PM",
+      link: "",
+    },
+  ];
+  const renderContactDetails = () => {
+    return contactDetails.map((detail, index) => (
+      <div
+        key={index}
+        className=" flex justify-start items-center mb-4 text-gray-300 hover:text-cyan-300 transition duration-300"
+      >
+        <detail.icon className="w-6 h-6 mr-2" />
+        <a
+          href={detail.link}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-gray-300 hover:underline hover:text-cyan-300 transition duration-300"
+        >
+          {detail.label}: {detail.value}
+        </a>
+      </div>
+    ));
+  };
+
   return (
-    <div>
-      <h1>Contact Us</h1>
-      <p>If you have any questions, feel free to reach out!</p>
-      <form>
-        <label>
-          Name:
-          <input type="text" name="name" required />
-        </label>
-        <br />
-        <label>
-          Email:
-          <input type="email" name="email" required />
-        </label>
-        <br />
-        <label>
-          Message:
-          <textarea name="message" required></textarea>
-        </label>
-        <br />
-        <button type="submit">Send</button>
-      </form>
+    <div className=" min-h-screen bg-gradient-to-br from-black via-gray-900 to-black text-white px-6 py-16 ">
+      <div className="container mx-auto ">
+        <motion.div
+          initial={{ opacity: 0, y: 60 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1 }}
+          className="max-w-5xl mx-auto text-center"
+        >
+          <h1 className="md:text-5xl text-3xl text-start md:text-center font-extrabold mb-4 tracking-wide">
+            Contact <span className="text-cyan-400">Us</span>
+          </h1>
+          <p className="text-gray-300 md:text-lg text-start md:text-center ">
+            Here at Kholmili, we value your feedback and inquiries. Whether you
+            have questions about our products, need assistance with an order, or
+            want to share your experience with us, we are here to help. Please
+            feel free to reach out through the contact form below or directly
+            via our email or phone number. Our dedicated team is ready to assist
+            you and ensure you have the best experience possible. Thank you for
+            choosing Kholmili, where quality meets reliability!
+          </p>
+        </motion.div>
+
+        <div className="grid md:grid-cols-1 gap-10 mt-16 ">
+          <motion.div
+            initial={{ opacity: 0, x: 60 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.3, duration: 0.8 }}
+            className="backdrop-blur-lg bg-white/10 rounded-2xl p-4 md:p-8 shadow-xl border border-white/10"
+          >
+            <h2 className="text-3xl font-semibold mb-4 text-cyan-300">
+              Our Location
+            </h2>
+            <p className="text-gray-300 mb-4">Baku, Azerbaijan - 1000</p>
+            <div className="rounded-xl overflow-hidden h-64 border border-white/10">
+              <iframe
+                title="Company Location"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3037.0709786946516!2d49.946691315409535!3d40.40392707936583!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40306306a6ccbde1%3A0x47fa46d4558f3fee!2s8-CI%20KM%20BAZARI%20LITSEY!5e0!3m2!1sen!2s!4v1715326254000!5m2!1sen!2s"
+                width="100%"
+                height="100%"
+                loading="lazy"
+                allowFullScreen
+                referrerPolicy="no-referrer-when-downgrade"
+              />
+            </div>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, x: -60 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.3, duration: 0.8 }}
+            className="backdrop-blur-lg bg-white/10 rounded-2xl p-4 md:p-8 shadow-xl border border-white/10"
+          >
+            <h2 className="text-3xl font-semibold mb-4 text-cyan-300">
+              Contact Details
+            </h2>
+            <div className="text-gray-300  grid lg:grid-cols-4 md:grid-cols-2">
+              {renderContactDetails()}
+            </div>
+            <p className="text-gray-300 mt-4">
+              For any inquiries, please feel free to reach out to us via the
+              contact details provided above. We look forward to hearing from
+              you!
+            </p>
+          </motion.div>
+        </div>
+      </div>
     </div>
   );
-};
-
-export default ContactPage;
+}
