@@ -26,7 +26,7 @@ export default function ContactPage() {
       icon: InstagramIcon,
       label: "Instagram",
       value: "xolmili_",
-      link: "https://www.instagram.com/xolmili.az/",
+      link: "https://www.instagram.com/xolmili_/",
     },
     {
       icon: Clock10Icon,
