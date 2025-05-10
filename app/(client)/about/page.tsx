@@ -33,7 +33,7 @@ export default function AboutPage() {
           </h2>
           <p className="text-gray-300">
             We aim to create intelligent ecosystems where technology adapts to
-            you. From digital experiences to smart logistics, we're ahead of
+            you. From digital experiences to smart logistics, were ahead of
             time.
           </p>
         </motion.div>
