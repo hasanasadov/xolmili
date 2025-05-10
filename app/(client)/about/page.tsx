@@ -15,7 +15,7 @@ export default function AboutPage() {
           About <span className="text-cyan-400">Us</span>
         </h1>
         <p className="text-gray-300 text-lg">
-          We're a futuristic company reimagining technology, connection, and
+          We are a futuristic company reimagining technology, connection, and
           location-based solutions.
         </p>
       </motion.div>

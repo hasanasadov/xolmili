@@ -2,6 +2,7 @@
 import React from "react";
 import { Button } from "../ui/button";
 import RenderIf from "@/lib/RenderIf";
+import Link from "next/link";
 
 const Navbar = () => {
   const [isDialogOpen, setIsDialogOpen] = React.useState(false);
@@ -13,7 +14,7 @@ const Navbar = () => {
         </div>
         <div className="hidden md:flex space-x-4">
           <Button className="text-white" variant="link">
-            <a href="/">Home</a>
+            <Link href="/">Home</Link>
           </Button>
           <Button className="text-white" variant="ghost">
             <a href="/about">About</a>
@@ -52,9 +53,9 @@ const Navbar = () => {
                   </button>
                 </div>
                 <div className="flex flex-col space-y-2">
-                  <a href="/" className="text-black hover:underline">
+                  <Link href="/" className="text-black hover:underline">
                     Home
-                  </a>
+                  </Link>
                   <a href="/about" className="text-black hover:underline">
                     About
                   </a>
