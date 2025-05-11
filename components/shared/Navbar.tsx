@@ -3,26 +3,48 @@ import React from "react";
 import { Button } from "../ui/button";
 import RenderIf from "@/lib/RenderIf";
 import Link from "next/link";
+import { MenuIcon } from "lucide-react";
+import { usePathname } from "next/navigation";
 
 const Navbar = () => {
   const [isDialogOpen, setIsDialogOpen] = React.useState(false);
+  const pathname = usePathname();
+
   return (
     <nav className="sticky p-2 top-0 w-full z-50 bg-white/10 backdrop-blur-md border-b border-white/20">
       <div className="container mx-auto flex justify-between items-center h-24">
-        <div className="w-32" onClick={() => (window.location.href = "/")}>
+        <div
+          className="w-32 drop-shadow-[0_0_2px_#fff]"
+          onClick={() => (window.location.href = "/")}
+        >
           <img src="/logoWhite.png" alt="Logo" />
         </div>
         <div className="hidden md:flex space-x-4">
-          <Button className="text-white" variant="link">
+          <Button
+            className={pathname === "/" ? "text-cyan-400" : "text-white"}
+            variant="link"
+          >
             <Link href="/">Home</Link>
           </Button>
-          <Button className="text-white" variant="link">
+
+          <Button
+            className={pathname === "/about" ? "text-cyan-400" : "text-white"}
+            variant="link"
+          >
             <a href="/about">About</a>
           </Button>
-          <Button className="text-white" variant="link">
+
+          <Button
+            className={pathname === "/price" ? "text-cyan-400" : "text-white"}
+            variant="link"
+          >
             <a href="/price">Price Offers</a>
           </Button>
-          <Button className="text-white" variant="link">
+
+          <Button
+            className={pathname === "/contact" ? "text-cyan-400" : "text-white"}
+            variant="link"
+          >
             <a href="/contact">Contact</a>
           </Button>
         </div>
@@ -33,44 +55,56 @@ const Navbar = () => {
         </div>
         <div className="md:hidden">
           <Button
-            className="text-white"
+            className="text-white "
             variant="ghost"
             onClick={() => setIsDialogOpen(true)}
           >
-            Menu
+            <MenuIcon className="!w-8 !h-8" />
           </Button>
 
           <RenderIf condition={isDialogOpen}>
-            <div className="fixed top-[50vh] inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-              <div className="bg-white p-4 rounded-lg w-3/4 max-w-md">
-                <div className="flex justify-between items-center mb-4">
-                  <h2 className="text-lg font-bold">Menu</h2>
-                  <button
-                    className="text-black"
-                    onClick={() => setIsDialogOpen(false)}
-                  >
-                    Close
-                  </button>
-                </div>
-                <div className="flex flex-col space-y-2">
-                  <Link href="/" className="text-black hover:underline">
-                    Home
-                  </Link>
-                  <a href="/about" className="text-black hover:underline">
-                    About
-                  </a>
-                  <a href="/price" className="text-black hover:underline">
-                    Price Offers
-                  </a>
-                  <a href="/contact" className="text-black hover:underline">
-                    Contact
-                  </a>
-                  <Button
-                    className="bg-black text-white hover:bg-gray-800 mt-4"
-                    onClick={() => setIsDialogOpen(false)}
-                  >
-                    Login
-                  </Button>
+            <div
+              onClick={() => setIsDialogOpen(false)}
+              className="fixed top-0 right-0 h-screen w-screen bg-black/50 z-50 "
+            >
+              <div className="z-[99999999] px-20 py-12 rounded-2xl absolute top-1/2 right-1/2 translate-x-1/2 -translate-y-1/2   bg-white  shadow-lg transition-transform transform duration-300 ease-in-out">
+                <div className="flex flex-col items-center justify-between gap-16 h-full">
+                  <div className="text-4xl font-bold text-center">Menu</div>
+                  <div className="flex flex-col space-y-6 mt-4 items-center !text-3xl">
+                    <Button
+                      className="text-cyan-700"
+                      variant="link"
+                      onClick={() => setIsDialogOpen(false)}
+                    >
+                      <Link href="/">Home</Link>
+                    </Button>
+                    <Button
+                      variant="link"
+                      onClick={() => setIsDialogOpen(false)}
+                    >
+                      <a href="/about">About</a>
+                    </Button>
+                    <Button
+                      variant="link"
+                      onClick={() => setIsDialogOpen(false)}
+                    >
+                      <a href="/price">Price Offers</a>
+                    </Button>
+                    <Button
+                      variant="link"
+                      onClick={() => setIsDialogOpen(false)}
+                    >
+                      <a href="/contact">Contact</a>
+                    </Button>
+                  </div>
+                  <div>
+                    <Button
+                      variant={"default"}
+                      onClick={() => setIsDialogOpen(false)}
+                    >
+                      Close
+                    </Button>
+                  </div>
                 </div>
               </div>
             </div>

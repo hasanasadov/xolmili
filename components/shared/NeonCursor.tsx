@@ -2,25 +2,47 @@
 
 import { useEffect, useState } from "react";
 
+interface Position {
+  x: number;
+  y: number;
+}
+
 export default function NeonCursor() {
-  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [trail, setTrail] = useState<Position[]>([]);
 
   useEffect(() => {
     const moveHandler = (e: MouseEvent) => {
-      setPosition({ x: e.clientX, y: e.clientY });
+      setTrail((prev) => {
+        const newTrail = [...prev, { x: e.clientX, y: e.clientY }];
+        return newTrail.slice(-8); // Keep last 20 positions
+      });
     };
     window.addEventListener("mousemove", moveHandler);
     return () => window.removeEventListener("mousemove", moveHandler);
   }, []);
 
   return (
-    <div
-      className="fixed top-0 left-0 pointer-events-none z-[9999]"
-      style={{
-        transform: `translate(${position.x}px, ${position.y}px)`,
-      }}
-    >
-      <div className="w-8 h-8 rounded-full bg-cyan-400 blur-sm animate-pulse -translate-x-4 -translate-y-4" />
-    </div>
+    <>
+      {trail.map((pos, index) => (
+        <div
+          key={index}
+          className="fixed top-0 left-0 pointer-events-none z-[9999]"
+          style={{
+            transform: `translate(${pos.x}px, ${pos.y}px)`,
+          }}
+        >
+          <div
+            className="w-6 h-6 rounded-full bg-cyan-400 blur-md"
+            style={{
+              opacity: (index + 1) / trail.length, // Fading effect
+              transform: `translate(-50%, -50%) scale(${
+                1 - index / trail.length
+              })`,
+              transition: "transform 0.05s, opacity 0.05s",
+            }}
+          />
+        </div>
+      ))}
+    </>
   );
 }

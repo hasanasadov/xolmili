@@ -1,6 +1,6 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
+import RGBButton from "@/components/shared/RGButton";
 import React from "react";
 
 const HomePage = () => {
@@ -26,12 +26,9 @@ const HomePage = () => {
             There&ldquo;s more to a great car than just clever engineering. It
             has to be sturdy, reliable, and make your life a little easier.
           </p>
-          <Button
-            onClick={() => (window.location.href = "/about")}
-            className="bg-gradient-to-r cursor-pointer duration-500 from-cyan-500 to-blue-600 hover:from-blue-600 hover:to-cyan-500 text-white font-bold py-3 px-6 rounded-full shadow-lg transition-transform transform hover:scale-105 animate-bounce"
-          >
+          <RGBButton onClick={() => (window.location.href = "/contact")}>
             Get Started
-          </Button>
+          </RGBButton>
         </div>
       </div>
     </div>
