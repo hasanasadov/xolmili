@@ -18,7 +18,7 @@ export default function RGBButton({
         className={cn(
           "relative z-10 rounded-2xl px-6 py-3 font-bold dark:text-white text-black hover:cursor-pointer",
           "dark:bg-black bg-white border-2 border-transparent hover:shadow-xl transition-all duration-300",
-          "shadow-[0_0_15px_rgba(255,0,255,0.4)] hover:shadow-[0_0_25px_rgba(0,255,255,0.6)]",
+          "shadow-[0_0_15px_rgba(255,0,255,0.4)] hover:shadow-[0_0_25px_rgba(0,255,255,0.6)] hover:bg-white",
           className
         )}
       >

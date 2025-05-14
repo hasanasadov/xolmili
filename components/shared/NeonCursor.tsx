@@ -14,7 +14,7 @@ export default function NeonCursor() {
     const moveHandler = (e: MouseEvent) => {
       setTrail((prev) => {
         const newTrail = [...prev, { x: e.clientX, y: e.clientY }];
-        return newTrail.slice(-2); // Keep last 20 positions
+        return newTrail.slice(-8); // Keep last 20 positions
       });
     };
     window.addEventListener("mousemove", moveHandler);
@@ -32,7 +32,7 @@ export default function NeonCursor() {
           }}
         >
           <div
-            className="w-6 h-6 rounded-full bg-cyan-400 blur-md"
+            className="w-6 h-6 rounded-full hidden lg:block bg-cyan-400 blur-md"
             style={{
               opacity: (index + 1) / trail.length, // Fading effect
               transform: `translate(-50%, -50%) scale(${
