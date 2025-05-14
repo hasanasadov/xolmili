@@ -40,14 +40,14 @@ export default function ContactPage() {
     return contactDetails.map((detail, index) => (
       <div
         key={index}
-        className=" flex justify-start items-center mb-4 text-gray-300 hover:text-cyan-300 transition duration-300"
+        className=" flex justify-start items-center mb-4 ark:text-gray-300 text-gray-700 dark:hover:text-cyan-300 hover:text-cyan-600 transition duration-300"
       >
         <detail.icon className="w-6 h-6 mr-2" />
         <a
           href={detail.link}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-gray-300 hover:underline hover:text-cyan-300 transition duration-300"
+          className="dark:text-gray-300 text-gray-700 hover:underline dark:hover:text-cyan-300 hover:text-cyan-600 transition duration-300"
         >
           {detail.label}: {detail.value}
         </a>
@@ -55,7 +55,7 @@ export default function ContactPage() {
     ));
   };
   return (
-    <div className=" min-h-screen bg-gradient-to-br from-black via-gray-900 to-black text-white px-6 py-16 ">
+    <div className=" min-h-screen bg-gradient-to-br dark:from-black from-white dark:via-gray-900 via-gray-200 dark:to-black to-white dark:text-white px-6 py-16 ">
       <div className="container mx-auto ">
         <motion.div
           initial={{ opacity: 0, y: 60 }}
@@ -64,9 +64,10 @@ export default function ContactPage() {
           className="max-w-5xl mx-auto text-center"
         >
           <h1 className="md:text-5xl text-3xl text-start md:text-center font-extrabold mb-4 tracking-wide">
-            Contact <span className="text-cyan-400">Us</span>
+            <span className="dark:text-white text-black">Contact </span>
+            <span className="dark:text-cyan-300 text-cyan-600">Us</span>
           </h1>
-          <p className="text-gray-300 md:text-lg text-start md:text-center ">
+          <p className="dark:text-gray-300 text-gray-700 md:text-lg text-start md:text-center ">
             Here at Kholmili, we value your feedback and inquiries. Whether you
             have questions about our products, need assistance with an order, or
             want to share your experience with us, we are here to help. Please
@@ -82,12 +83,14 @@ export default function ContactPage() {
             initial={{ opacity: 0, x: 60 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.3, duration: 0.8 }}
-            className="backdrop-blur-lg bg-white/10 rounded-2xl p-4 md:p-8 shadow-xl border border-white/10"
+            className="backdrop-blur-lg bg-white/10 rounded-2xl p-4 md:p-8 shadow-xl border dark:border-white/10 border-black/20"
           >
-            <h2 className="text-3xl font-semibold mb-4 text-cyan-300">
+            <h2 className="text-3xl font-semibold mb-4  dark:text-cyan-300 text-cyan-600">
               Our Location
             </h2>
-            <p className="text-gray-300 mb-4">Baku, Azerbaijan - 1000</p>
+            <p className="dark:text-gray-300 text-gray-700 mb-4">
+              Baku, Azerbaijan - 1000
+            </p>
             <div className="rounded-xl overflow-hidden h-64 border border-white/10">
               <iframe
                 title="Company Location"
@@ -104,15 +107,15 @@ export default function ContactPage() {
             initial={{ opacity: 0, x: -60 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.3, duration: 0.8 }}
-            className="backdrop-blur-lg bg-white/10 rounded-2xl p-4 md:p-8 shadow-xl border border-white/10"
+            className="backdrop-blur-lg bg-white/10 rounded-2xl p-4 md:p-8 shadow-xl border dark:border-white/10 border-black/20"
           >
-            <h2 className="text-3xl font-semibold mb-4 text-cyan-300">
+            <h2 className="text-3xl font-semibold mb-4 dark:text-cyan-300 text-cyan-600">
               Contact Details
             </h2>
-            <div className="text-gray-300  grid lg:grid-cols-4 md:grid-cols-2">
+            <div className="dark:text-gray-300 text-gray-700  grid lg:grid-cols-4 md:grid-cols-2">
               {renderContactDetails()}
             </div>
-            <p className="text-gray-300 mt-4">
+            <p className="dark:text-gray-300 text-gray-700 mt-4">
               For any inquiries, please feel free to reach out to us via the
               contact details provided above. We look forward to hearing from
               you!

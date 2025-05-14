@@ -6,25 +6,32 @@ import Link from "next/link";
 import { MenuIcon } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { PATHS } from "@/constants";
+import { ThemeToggle } from "./ThemeToggle";
+import { useTheme } from "next-themes";
 
 const Navbar = () => {
   const [isDialogOpen, setIsDialogOpen] = React.useState(false);
   const pathname = usePathname();
+  const { theme } = useTheme();
 
   return (
-    <nav className="sticky p-2 top-0 w-full z-50 bg-white/10 backdrop-blur-md border-b border-white/20">
+    <nav className="sticky p-2 top-0 w-full z-50 dark:bg-white/10 bg-white/90 backdrop-blur-md border-b border-white/20">
       <div className="container mx-auto flex justify-between items-center h-24">
         <div
           className="w-32 drop-shadow-[0_0_2px_#fff] cursor-pointer"
           onClick={() => (window.location.href = PATHS.HOME)}
         >
-          <img src="/logoWhite.png" alt="Logo" />
+          {theme === "light" ? (
+            <img src="/logo.png" alt="Logo" />
+          ) : (
+            <img src="/logoWhite.png" alt="Logo" />
+          )}
         </div>
         <div className="hidden md:flex space-x-4">
           <Link href={PATHS.HOME}>
             <Button
               className={
-                pathname === PATHS.HOME ? "text-cyan-400" : "text-white"
+                pathname === PATHS.HOME ? "dark:!text-cyan-400 border" : ""
               }
               variant="link"
             >
@@ -35,7 +42,7 @@ const Navbar = () => {
           <Link href={PATHS.CATALOGUE}>
             <Button
               className={
-                pathname === PATHS.CATALOGUE ? "text-cyan-400" : "text-white"
+                pathname === PATHS.CATALOGUE ? "dark:!text-cyan-400 border" : ""
               }
               variant="link"
             >
@@ -46,7 +53,7 @@ const Navbar = () => {
           <Link href={PATHS.ABOUT}>
             <Button
               className={
-                pathname === PATHS.ABOUT ? "text-cyan-400" : "text-white"
+                pathname === PATHS.ABOUT ? "dark:!text-cyan-400 border" : ""
               }
               variant="link"
             >
@@ -57,7 +64,7 @@ const Navbar = () => {
           <Link href={PATHS.CONTACT}>
             <Button
               className={
-                pathname === PATHS.CONTACT ? "text-cyan-400" : "text-white"
+                pathname === PATHS.CONTACT ? "dark:!text-cyan-400 border" : ""
               }
               variant="link"
             >
@@ -69,7 +76,7 @@ const Navbar = () => {
           <Link href={PATHS.ORDER}>
             <Button
               className={
-                pathname === PATHS.ORDER ? "text-cyan-400" : "text-white"
+                pathname === PATHS.ORDER ? "dark:!text-cyan-400 border" : ""
               }
               variant="link"
             >
@@ -88,6 +95,7 @@ const Navbar = () => {
               Login
             </Button>
           </Link>
+          <ThemeToggle />
         </div>
         <div className="md:hidden">
           <Button

@@ -54,14 +54,14 @@ export default function OrderForm() {
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className="md:min-h-[90vh] bg-gradient-to-br from-black via-gray-900 to-black text-white px-6 py-16 flex items-center justify-center"
+      className="md:min-h-[90vh] bg-gradient-to-br dark:from-black from-white dark:via-gray-900 via-gray-200 dark:to-black to-white dark:text-white text-black px-6 py-16 flex items-center justify-center"
     >
-      <div className="md:h-8/12 md:w-1/3 w-full h-full backdrop-blur-xl cursor-pointer bg-white/5 md:p-6 p-4 rounded-2xl border border-zinc-700 shadow-[0_0_40px_#0ff] hover:shadow-[0_0_60px_#0ff] transition duration-100 ease-in-out">
+      <div className="md:h-8/12 md:w-1/3 w-full h-full backdrop-blur-xl cursor-pointer dark:bg-white/5 md:p-6 p-4 rounded-2xl border border-zinc-700 dark:shadow-[0_0_40px_#0ff] shadow-[0_0_40px_#0af]  hover:shadow-[0_0_60px_#0ff] transition duration-100 ease-in-out">
         <motion.h1
           initial={{ opacity: 0, scale: 0.98 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6 }}
-          className="text-3xl font-semibold mb-8 text-center tracking-wide text-neutral-100"
+          className="text-3xl font-semibold mb-8 text-center tracking-wide dark:text-neutral-100 text-neutral-900"
         >
           Place Your Order
         </motion.h1>
@@ -78,7 +78,7 @@ export default function OrderForm() {
               value={formData.name}
               onChange={handleChange}
               required
-              className="bg-neutral-900 text-white border border-neutral-700 focus:ring-1 focus:ring-white rounded-lg"
+              className="dark:bg-neutral-900 dark:text-white border border-neutral-700 focus:ring-1 focus:ring-white rounded-lg"
             />
           </motion.div>
 
@@ -94,7 +94,7 @@ export default function OrderForm() {
               value={formData.email}
               onChange={handleChange}
               required
-              className="bg-neutral-900 text-white border border-neutral-700 focus:ring-1 focus:ring-white rounded-lg"
+              className="dark:bg-neutral-900 dark:text-white border border-neutral-700 focus:ring-1 focus:ring-white rounded-lg"
             />
           </motion.div>
 
@@ -107,8 +107,8 @@ export default function OrderForm() {
               defaultCountry="az"
               value={formData.phone}
               onChange={handlePhoneChange}
-              className="!bg-transparent !text-white"
-              inputClassName="!bg-transparent !text-white text-white border border-neutral-700 w-full rounded-lg px-4 py-2 focus:ring-1 focus:ring-white"
+              className="!bg-transparent !dark:text-white"
+              inputClassName="!bg-transparent  !text-black dark:!text-white border border-neutral-700 w-full rounded-lg px-4 py-2 focus:ring-1 focus:ring-white"
               placeholder="Phone Number"
               required
             />
@@ -125,7 +125,7 @@ export default function OrderForm() {
               value={formData.message}
               onChange={handleChange}
               required
-              className="bg-neutral-900 min-h-32 text-white border border-neutral-700 focus:ring-1 focus:ring-white rounded-lg"
+              className="dark:bg-neutral-900 min-h-32 dark:text-white border border-neutral-700 focus:ring-1 focus:ring-white rounded-lg"
             />
           </motion.div>
 

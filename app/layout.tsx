@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { ThemeProvider } from "@/components/shared/ThemeProvider";
 import Navbar from "@/components/shared/Navbar";
 import NeonCursor from "@/components/shared/NeonCursor";
 import { ScrollToTop } from "@/components/shared/ScrollToTop";
@@ -17,31 +18,25 @@ export const metadata: Metadata = {
     type: "website",
   },
   other: {
-    "google-site-verification": "your-verification-code-if-any", // optional
+    "google-site-verification": "your-verification-code-if-any",
   },
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
-    <html lang="en">
-      <head>
-        <link rel="icon" href="/logo.png" />
-
-        <link
-          href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap"
-          rel="stylesheet"
-        />
-      </head>
-      <body className="min-h-20 bg-gradient-to-br from-black via-gray-900 to-black text-white">
-        <Navbar />
-        <ScrollToTop />
-        <NeonCursor />
-        <div>{children}</div>
-        <Footer />
+    <html lang="en" suppressHydrationWarning>
+      <body className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-black text-white">
+        <ThemeProvider>
+          <Navbar />
+          <ScrollToTop />
+          <NeonCursor />
+          {children}
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   );

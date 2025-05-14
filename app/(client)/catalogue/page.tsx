@@ -81,9 +81,9 @@ export default function CataloguePage() {
   const [selectedProduct, setSelectedProduct] = useState(products[0]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white flex flex-col md:flex-row overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-br dark:from-gray-900 from-gray-100 dark:via-gray-800 via-gray-100 dark:to-black to-white dark:text-white text-black flex flex-col md:flex-row overflow-hidden">
       <aside className="w-full md:w-1/3 lg:w-1/4 border-b md:border-b-0 md:border-r border-gray-700 overflow-y-auto h-auto md:h-screen p-4 scrollbar-thin scrollbar-thumb-cyan-500">
-        <h2 className="text-3xl font-bold mb-6 text-cyan-400 animate-pulse text-center">
+        <h2 className="text-3xl font-bold mb-6 dark:text-cyan-400 animate-pulse text-center drop-shadow-[0_0_10px_#0ff]">
           Catalogue
         </h2>
         <div className="space-y-4">
@@ -91,13 +91,13 @@ export default function CataloguePage() {
             <div
               key={product.id}
               onClick={() => setSelectedProduct(product)}
-              className={`flex flex-col md:px-6 sm:flex-row items-center justify-between cursor-pointer p-3 rounded-lg transition-all hover:bg-cyan-700/20 hover:scale-105 shadow-md ${
+              className={`flex flex-col border border-black/20 dark:border-gray-700  md:px-6 sm:flex-row items-center justify-between cursor-pointer p-3 rounded-lg transition-all dark:hover:bg-cyan-700/20 hover:bg-cyan-700/20 hover:scale-105 shadow-md ${
                 selectedProduct.id === product.id
-                  ? "bg-cyan-700/30"
-                  : "bg-gray-800"
+                  ? "dark:bg-cyan-700/30 bg-cyan-700/50"
+                  : "dark:bg-gray-800 bg-cyan-700/20 "
               }`}
             >
-              <p className="text-center text-lg font-semibold text-cyan-300">
+              <p className="text-center text-lg font-semibold dark:text-cyan-300">
                 {product.name}
               </p>
               <div className="mt-2 sm:mt-0">
@@ -112,13 +112,13 @@ export default function CataloguePage() {
         </div>
       </aside>
 
-      <main className="flex-1 p-6 md:p-10 relative animate-fadeIn bg-gray-950/50 backdrop-blur-sm">
-        <div className=" mx-auto rounded-xl shadow-xl p-6 md:p-8 bg-gray-900/80 backdrop-blur-lg border border-cyan-600">
-          <h1 className="text-2xl md:text-4xl font-extrabold text-cyan-400 mb-4 md:mb-6 text-center">
+      <main className="flex-1 p-6 md:p-10 relative animate-fadeIn dark:bg-gray-950/50 bg-gray-300 backdrop-blur-sm">
+        <div className=" mx-auto rounded-xl shadow-xl p-6 md:p-8 dark:bg-gray-900/80 backdrop-blur-lg border border-cyan-600">
+          <h1 className="text-2xl md:text-4xl font-extrabold dark:text-cyan-400 text-cyan-600 mb-4 md:mb-6 text-center">
             {selectedProduct.name}
           </h1>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="h-64 md:h-[400px] w-full mb-4 md:mb-6 rounded-xl overflow-hidden relative drop-shadow-xl">
+            <div className="h-64 md:h-[400px] w-full mb-4 md:mb-6  rounded-xl overflow-hidden relative drop-shadow-xl">
               <img
                 src={selectedProduct.image}
                 alt={selectedProduct.name}
@@ -127,7 +127,7 @@ export default function CataloguePage() {
             </div>
 
             <div className="flex flex-col  md:items-center justify-center md:gap-20">
-              <p className="text-sm md:text-lg text-gray-300 leading-relaxed">
+              <p className="text-sm md:text-lg dark:text-gray-300 leading-relaxed">
                 {selectedProduct.description}
               </p>
               <div className="flex items-center justify-center w-full">

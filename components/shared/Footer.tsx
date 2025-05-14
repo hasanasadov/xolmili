@@ -7,7 +7,7 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="relative bg-black text-white px-6 py-16 overflow-hidden border-t border-zinc-800 shadow-[0_-10px_200px_#0ff5]">
+    <footer className="relative dark:bg-black text-black bg-white px-6 py-16 overflow-hidden border-t border-zinc-800 shadow-[0_-10px_200px_#0ff5]">
       <div className="container mx-auto relative z-10">
         {/* Neon glow background effect */}
         <div className="absolute inset-0 pointer-events-none">
@@ -24,15 +24,16 @@ export default function Footer() {
           {/* Company Info */}
           <div>
             <Link href={PATHS.HOME}>
-              <h2 className="text-3xl font-extrabold mb-4 text-cyan-400 drop-shadow-[0_0_10px_#0ff]">
+              <h2 className="text-3xl font-extrabold mb-4 dark:text-cyan-400 text-cyan-600 drop-shadow-[0_0_10px_#0ff]">
                 Kholmili Co.
               </h2>
             </Link>
-            <p className="text-sm text-zinc-300 leading-relaxed">
+            <p className="text-sm dark:text-zinc-300 text-black leading-relaxed">
               Established in{" "}
-              <span className="text-white font-medium">February 2010</span> by{" "}
-              <span className="text-white font-medium">Alirza Aliyev</span>. We
-              specialize in machine tool parts: couplings, pulleys, chains,
+              <span className="dark:text-white font-medium">February 2010</span>{" "}
+              by{" "}
+              <span className="dark:text-white font-medium">Alirza Aliyev</span>
+              . We specialize in machine tool parts: couplings, pulleys, chains,
               gears, bearings, and more. We offer part sizing and custom orders
               at all sales points.
             </p>
@@ -41,38 +42,42 @@ export default function Footer() {
           {/* Contact Info */}
           <div>
             <Link href={PATHS.CONTACT}>
-              <h3 className="text-xl font-semibold mb-5 text-purple-400 drop-shadow-[0_0_10px_#a855f7]">
+              <h3 className="text-xl font-semibold mb-5 dark:text-purple-400 text-purple-600 drop-shadow-[0_0_10px_#a855f7]">
                 Contact Us
               </h3>
             </Link>
-            <div className="space-y-4 text-sm text-zinc-300">
+            <div className="space-y-4 text-sm dark:text-zinc-300">
               <Link
                 href={"mailto:xolmili@gmail.com"}
-                className="cursor-pointer hover:text-cyan-300 duration-300 flex items-center gap-3 w-fit"
+                className="cursor-pointer dark:hover:text-cyan-300 hover:text-cyan-600 duration-300 flex items-center gap-3 w-fit"
               >
-                <Mail className="text-cyan-400" size={18} /> xolmili@gmail.com
+                <Mail className="dark:text-cyan-400 text-cyan-600" size={18} />{" "}
+                xolmili@gmail.com
               </Link>
               <Link
                 href={"tel:+994705048888"}
-                className="cursor-pointer hover:text-cyan-300 duration-300 flex items-center gap-3 w-fit"
+                className="cursor-pointer dark:hover:text-cyan-300 hover:text-cyan-600  duration-300 flex items-center gap-3 w-fit"
               >
-                <Phone className="text-cyan-400" size={18} /> Tel: +994 70 504
-                88 88
+                <Phone className="dark:text-cyan-400 text-cyan-600" size={18} />{" "}
+                Tel: +994 70 504 88 88
               </Link>
               <Link
-                className="cursor-pointer hover:text-cyan-300 duration-300 flex items-center gap-3 w-fit"
+                className="cursor-pointer dark:hover:text-cyan-300 hover:text-cyan-600 duration-300 flex items-center gap-3 w-fit"
                 href={"https://wa.me/994705048888"}
               >
-                <Phone className="text-cyan-400" size={18} /> Whatsapp: +994 70
-                504 88 88
+                <Phone className="dark:text-cyan-400 text-cyan-600" size={18} />{" "}
+                Whatsapp: +994 70 504 88 88
               </Link>
               <Link
                 target="_blank"
                 rel="noopener noreferrer"
                 href={"https://instagram.com/xolmili_"}
-                className="cursor-pointer hover:text-cyan-300 duration-300 flex items-center gap-3 w-fit"
+                className="cursor-pointer dark:hover:text-cyan-300 hover:text-cyan-600 duration-300 flex items-center gap-3 w-fit"
               >
-                <Instagram className="text-cyan-400" size={18} />
+                <Instagram
+                  className="dark:text-cyan-400 text-cyan-600"
+                  size={18}
+                />
                 @xolmili_
               </Link>
               <Link
@@ -81,10 +86,10 @@ export default function Footer() {
                 }
                 target="_blank"
                 rel="noopener noreferrer"
-                className="cursor-pointer hover:text-cyan-300 duration-300 flex items-center gap-3 w-fit"
+                className="cursor-pointer dark:hover:text-cyan-300 hover:text-cyan-600 duration-300 flex items-center gap-3 w-fit"
               >
-                <Clock className="text-cyan-400" size={18} /> Mon–Fri, 9 AM – 6
-                PM
+                <Clock className="dark:text-cyan-400 text-cyan-600" size={18} />{" "}
+                Mon–Fri, 9 AM – 6 PM
               </Link>
             </div>
           </div>
@@ -92,12 +97,12 @@ export default function Footer() {
           {/* Call to Action */}
           <motion.div
             onClick={() => (window.location.href = PATHS.CONTACT)}
-            className="backdrop-blur-xl cursor-pointer bg-white/5 p-6 rounded-2xl border border-zinc-700 shadow-[0_0_40px_#0ff] hover:shadow-[0_0_60px_#0ff] transition duration-200"
+            className="backdrop-blur-xl cursor-pointer bg-white/5 p-6 rounded-2xl border border-zinc-700 dark:shadow-[0_0_40px_#0ff] shadow-[0_0_40px_#0af] dark:hover:shadow-[0_0_60px_#0ff] hover:shadow-[0_0_60px_#0ff] transition duration-200"
           >
-            <h3 className="text-lg font-semibold text-white mb-2">
+            <h3 className="text-lg font-semibold dark:text-white mb-2">
               Let’s Talk
             </h3>
-            <p className="text-sm text-zinc-300">
+            <p className="text-sm dark:text-zinc-300">
               For custom parts, sizing advice, or urgent orders — contact us
               now. We&apos;re here to help.
             </p>

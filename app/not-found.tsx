@@ -36,7 +36,7 @@ export default function NotFoundPage() {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.7 }}
         >
-          The page you're looking for might have been removed or is temporarily
+          The page you&apos;re looking for might have been removed or is temporarily
           unavailable.
         </motion.p>
 
