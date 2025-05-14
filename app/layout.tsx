@@ -5,6 +5,8 @@ import Navbar from "@/components/shared/Navbar";
 // import NeonCursor from "@/components/shared/NeonCursor";
 import { ScrollToTop } from "@/components/shared/ScrollToTop";
 import Footer from "@/components/shared/Footer";
+import AntiInspect from "@/components/shared/AntiInspect";
+import CursorWarningWrapper from "@/components/shared/CursorWarningWrapper";
 
 export const metadata: Metadata = {
   title: "Xolmili – Official Website",
@@ -30,13 +32,16 @@ export default function RootLayout({
   return (
     <html className="" lang="en" suppressHydrationWarning>
       <body className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-black text-white">
-        <ThemeProvider>
-          <Navbar />
-          <ScrollToTop />
-          {/* <NeonCursor /> */}
-          {children}
-          <Footer />
-        </ThemeProvider>
+        <CursorWarningWrapper>
+          <ThemeProvider>
+            <Navbar />
+            <ScrollToTop />
+            <AntiInspect />
+            {/* <NeonCursor /> */}
+            {children}
+            <Footer />
+          </ThemeProvider>
+        </CursorWarningWrapper>
       </body>
     </html>
   );

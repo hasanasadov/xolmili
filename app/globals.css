@@ -167,3 +167,8 @@
     transform: translateY(0);
   }
 }
+/* globals.css */
+* {
+  user-select: none;
+  -webkit-user-drag: none;
+}
