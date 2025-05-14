@@ -15,12 +15,13 @@ export default function CursorWarningWrapper({
     const triggerWarning = () => {
       document.body.style.cursor =
         "url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2232%22 height=%2232%22><circle cx=%2216%22 cy=%2216%22 r=%2210%22 fill=%22red%22 /></svg>') 16 16, auto";
+
       setShowWarning(true);
 
       timeout = setTimeout(() => {
         document.body.style.cursor = "";
         setShowWarning(false);
-      }, 1500);
+      }, 1000);
     };
 
     const handleContextMenu = (e: MouseEvent) => {
@@ -31,19 +32,34 @@ export default function CursorWarningWrapper({
     const handleKeydown = (e: KeyboardEvent) => {
       if (
         e.key === "F12" ||
-        (e.ctrlKey && e.shiftKey && (e.key === "I" || e.key === "i"))
+        (e.ctrlKey &&
+          e.shiftKey &&
+          (e.key.toLowerCase() === "i" || e.key.toLowerCase() === "j")) ||
+        (e.ctrlKey && e.key.toLowerCase() === "u")
       ) {
         e.preventDefault();
         triggerWarning();
       }
     };
 
+    const handleScreenshot = (e: KeyboardEvent) => {
+      if (e.key === "PrintScreen") {
+        document.body.style.filter = "brightness(0)";
+        triggerWarning();
+        setTimeout(() => {
+          document.body.style.filter = "";
+        }, 1000);
+      }
+    };
+
     document.addEventListener("contextmenu", handleContextMenu);
     document.addEventListener("keydown", handleKeydown);
+    document.addEventListener("keyup", handleScreenshot);
 
     return () => {
       document.removeEventListener("contextmenu", handleContextMenu);
       document.removeEventListener("keydown", handleKeydown);
+      document.removeEventListener("keyup", handleScreenshot);
       clearTimeout(timeout);
     };
   }, []);
@@ -66,9 +82,10 @@ export default function CursorWarningWrapper({
             fontWeight: "bold",
             fontSize: "18px",
             boxShadow: "0 2px 10px rgba(0,0,0,0.2)",
+            pointerEvents: "none",
           }}
         >
-          Not allowed to stole
+          Not allowed to steal
         </div>
       )}
     </>
