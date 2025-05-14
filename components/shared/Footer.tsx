@@ -1,7 +1,9 @@
 "use client";
 
+import { PATHS } from "@/constants";
 import { motion } from "framer-motion";
 import { Mail, Instagram, Phone, Clock } from "lucide-react";
+import Link from "next/link";
 
 export default function Footer() {
   return (
@@ -21,9 +23,11 @@ export default function Footer() {
         >
           {/* Company Info */}
           <div>
-            <h2 className="text-3xl font-extrabold mb-4 text-cyan-400 drop-shadow-[0_0_10px_#0ff]">
-              Kholmili Co.
-            </h2>
+            <Link href={PATHS.HOME}>
+              <h2 className="text-3xl font-extrabold mb-4 text-cyan-400 drop-shadow-[0_0_10px_#0ff]">
+                Kholmili Co.
+              </h2>
+            </Link>
             <p className="text-sm text-zinc-300 leading-relaxed">
               Established in{" "}
               <span className="text-white font-medium">February 2010</span> by{" "}
@@ -36,46 +40,59 @@ export default function Footer() {
 
           {/* Contact Info */}
           <div>
-            <h3 className="text-xl font-semibold mb-5 text-purple-400 drop-shadow-[0_0_10px_#a855f7]">
-              Contact Us
-            </h3>
-            <ul className="space-y-4 text-sm text-zinc-300">
-              <li className="flex items-center gap-3">
+            <Link href={PATHS.CONTACT}>
+              <h3 className="text-xl font-semibold mb-5 text-purple-400 drop-shadow-[0_0_10px_#a855f7]">
+                Contact Us
+              </h3>
+            </Link>
+            <div className="space-y-4 text-sm text-zinc-300">
+              <Link
+                href={"mailto:xolmili@gmail.com"}
+                className="cursor-pointer hover:text-cyan-300 duration-300 flex items-center gap-3 w-fit"
+              >
                 <Mail className="text-cyan-400" size={18} /> xolmili@gmail.com
-              </li>
-              <li className="flex items-center gap-3">
+              </Link>
+              <Link
+                href={"tel:+994705048888"}
+                className="cursor-pointer hover:text-cyan-300 duration-300 flex items-center gap-3 w-fit"
+              >
                 <Phone className="text-cyan-400" size={18} /> Tel: +994 70 504
                 88 88
-              </li>
-              <li className="flex items-center gap-3">
+              </Link>
+              <Link
+                className="cursor-pointer hover:text-cyan-300 duration-300 flex items-center gap-3 w-fit"
+                href={"https://wa.me/994705048888"}
+              >
+                <Phone className="text-cyan-400" size={18} /> Whatsapp: +994 70
+                504 88 88
+              </Link>
+              <Link
+                target="_blank"
+                rel="noopener noreferrer"
+                href={"https://instagram.com/xolmili_"}
+                className="cursor-pointer hover:text-cyan-300 duration-300 flex items-center gap-3 w-fit"
+              >
                 <Instagram className="text-cyan-400" size={18} />
-                <a
-                  href="https://instagram.com/xolmili_"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:underline text-white"
-                >
-                  @xolmili_
-                </a>
-              </li>
-              <li className="flex items-center gap-3">
+                @xolmili_
+              </Link>
+              <Link
+                href={
+                  "https://www.google.com/maps?ll=40.403927,49.94927&z=15&t=m&hl=en&gl=US&mapclient=embed&cid=6128762944405328348"
+                }
+                target="_blank"
+                rel="noopener noreferrer"
+                className="cursor-pointer hover:text-cyan-300 duration-300 flex items-center gap-3 w-fit"
+              >
                 <Clock className="text-cyan-400" size={18} /> Mon–Fri, 9 AM – 6
                 PM
-              </li>
-            </ul>
+              </Link>
+            </div>
           </div>
 
           {/* Call to Action */}
           <motion.div
-            onClick={() => (window.location.href = "/contact")}
-            initial={{ scale: 0.95 }}
-            animate={{ scale: 1 }}
-            transition={{
-              repeat: Infinity,
-              repeatType: "reverse",
-              duration: 0.1,
-            }}
-            className="backdrop-blur-xl cursor-pointer bg-white/5 p-6 rounded-2xl border border-zinc-700 shadow-[0_0_40px_#0ff] hover:shadow-[0_0_60px_#0ff] transition duration-500"
+            onClick={() => (window.location.href = PATHS.CONTACT)}
+            className="backdrop-blur-xl cursor-pointer bg-white/5 p-6 rounded-2xl border border-zinc-700 shadow-[0_0_40px_#0ff] hover:shadow-[0_0_60px_#0ff] transition duration-200"
           >
             <h3 className="text-lg font-semibold text-white mb-2">
               Let’s Talk

@@ -35,6 +35,7 @@ export default function ContactPage() {
       link: "",
     },
   ];
+
   const renderContactDetails = () => {
     return contactDetails.map((detail, index) => (
       <div
@@ -53,7 +54,6 @@ export default function ContactPage() {
       </div>
     ));
   };
-
   return (
     <div className=" min-h-screen bg-gradient-to-br from-black via-gray-900 to-black text-white px-6 py-16 ">
       <div className="container mx-auto ">

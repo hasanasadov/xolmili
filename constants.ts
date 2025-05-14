@@ -1,0 +1,16 @@
+export const PATHS = {
+  HOME: "/",
+  CATALOGUE: "/catalogue",
+  ABOUT: "/about",
+  CONTACT: "/contact",
+  ORDER: "/order",
+  PRODUCT_DETAIL: (id: string) => `/catalogue/${id}`,
+  LOGIN: "/login",
+  SIGNUP: "/signup",
+  FORGOT_PASSWORD: "/forgot-password",
+  RESET_PASSWORD: "/reset-password",
+  TERMS: "/terms",
+  PRIVACY: "/privacy",
+  FAQ: "/faq",
+  SUPPORT: "/support",
+};

@@ -14,7 +14,7 @@ export default function NeonCursor() {
     const moveHandler = (e: MouseEvent) => {
       setTrail((prev) => {
         const newTrail = [...prev, { x: e.clientX, y: e.clientY }];
-        return newTrail.slice(-8); // Keep last 20 positions
+        return newTrail.slice(-2); // Keep last 20 positions
       });
     };
     window.addEventListener("mousemove", moveHandler);

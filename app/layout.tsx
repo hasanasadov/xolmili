@@ -23,7 +23,7 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body className=" bg-black">
+      <body className="min-h-20 bg-gradient-to-br from-black via-gray-900 to-black text-white ">
         <Navbar />
         <ScrollToTop />
         <NeonCursor />
