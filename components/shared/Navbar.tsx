@@ -14,13 +14,17 @@ const Navbar = () => {
 
   return (
     <nav className="sticky p-2 top-0 w-full z-50 dark:bg-white/10 bg-white/90 backdrop-blur-md border-b border-white/20">
-      <div className="container mx-auto flex justify-between items-center h-24">
+      <div className="container mx-auto flex justify-between items-center h-14">
         <div
-          className="w-32 drop-shadow-[0_0_2px_#fff] cursor-pointer"
+          className=" h-[calc(100%+8px)]  drop-shadow-[0_0_2px_#fff] cursor-pointer"
           onClick={() => (window.location.href = PATHS.HOME)}
         >
-          <img className="dark:hidden" src="/logo.png" alt="Logo" />
-          <img className="hidden dark:block" src="/logoWhite.png" alt="Logo" />
+          <img className="dark:hidden h-full" src="/logo.png" alt="Logo" />
+          <img
+            className="hidden dark:block h-full"
+            src="/logoWhite.png"
+            alt="Logo"
+          />
         </div>
         <div className="hidden lg:flex space-x-4">
           <Link href={PATHS.HOME}>

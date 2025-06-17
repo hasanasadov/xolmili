@@ -40,7 +40,7 @@ export default function ContactPage() {
     return contactDetails.map((detail, index) => (
       <div
         key={index}
-        className=" flex justify-start items-center mb-4 ark:text-gray-300 text-gray-700 dark:hover:text-cyan-300 hover:text-cyan-600 transition duration-300"
+        className=" flex justify-start items-center mb-4 ark:text-gray-300 text-gray-400 dark:hover:text-cyan-300 hover:text-cyan-600 transition duration-300"
       >
         <detail.icon className="w-6 h-6 mr-2" />
         <a
