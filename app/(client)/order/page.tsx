@@ -5,14 +5,16 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { PhoneInput } from "react-international-phone";
+// import { PhoneInput } from "react-international-phone";
+// import emailjs from "@emailjs/browser";
+
 import "react-international-phone/style.css";
 
 export default function OrderForm() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    phone: "",
+    // phone: "",
     message: "",
   });
 
@@ -25,23 +27,31 @@ export default function OrderForm() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handlePhoneChange = (phone: string) => {
-    setFormData({ ...formData, phone });
-  };
+  // const handlePhoneChange = (phone: string) => {
+  //   setFormData({ ...formData, phone });
+  // };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
 
     try {
-      await fetch("/api/send", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      });
+      // console.log("Sending email with data:", formData);
+      // const result = await emailjs.send(
+      //   "service_a0yz9xm",
+      //   "template_anaadwj",
+      //   {
+      //     name: formData.name,
+      //     email: formData.email,
+      //     message: formData.message,
+      //     // phone: formData.phone,
+      //   },
+      //   "I0mZHHSvqjLQdwU2D"
+      // );
 
+      // console.log(result.text);
       setSuccess(true);
-      setFormData({ name: "", email: "", phone: "", message: "" });
+      setFormData({ name: "", email: "", message: "" });
     } catch (error) {
       console.error("Sending failed", error);
     } finally {
@@ -54,16 +64,19 @@ export default function OrderForm() {
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className="md:min-h-[90vh] bg-gradient-to-br dark:from-black from-white dark:via-gray-900 via-gray-200 dark:to-black to-white dark:text-white text-black px-6 py-16 flex items-center justify-center"
+      className="md:min-h-[90vh]   bg-gradient-to-br dark:from-black from-white dark:via-gray-900 via-gray-200 dark:to-black to-white dark:text-white text-black px-6 py-16 flex items-center justify-evenly md:flex-row flex-col gap-10"
     >
-      <div className="md:h-8/12 md:w-1/3 w-full h-full backdrop-blur-xl cursor-pointer dark:bg-white/5 md:p-6 p-4 rounded-2xl border border-zinc-700 dark:shadow-[0_0_40px_#0ff] shadow-[0_0_40px_#0af]  hover:shadow-[0_0_60px_#0ff] transition duration-100 ease-in-out">
+      <div className="h-full flex items-start text-3xl">
+        Write what you want to order .
+      </div>
+      <div className="md:h-8/12 md:w-1/3 w-full h-full backdrop-blur-xl cursor-pointer dark:bg-white/5 md:p-6 p-4 rounded-md border border-zinc-700 transition duration-100 ease-in-out">
         <motion.h1
           initial={{ opacity: 0, scale: 0.98 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6 }}
-          className="text-3xl font-semibold mb-8 text-center tracking-wide dark:text-neutral-100 text-neutral-900"
+          className="text-3xl font-semibold mb-8 text-center tracking-wide dark:text-neutral-100 text-primary"
         >
-          Place Your Order
+          Please feel free to message us
         </motion.h1>
 
         <form onSubmit={handleSubmit} className="space-y-6">
@@ -98,7 +111,7 @@ export default function OrderForm() {
             />
           </motion.div>
 
-          <motion.div
+          {/* <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7 }}
@@ -108,11 +121,11 @@ export default function OrderForm() {
               value={formData.phone}
               onChange={handlePhoneChange}
               className="!bg-transparent !dark:text-white"
-              inputClassName="!bg-transparent  !text-black dark:!text-white border border-neutral-700 w-full rounded-lg px-4 py-2 focus:ring-1 focus:ring-white"
+              inputClassName="!bg-transparent  !text-black dark:!text-white border border-neutral-900 w-full rounded-lg px-4 py-2 focus:ring-1 focus:ring-white"
               placeholder="Phone Number"
               required
             />
-          </motion.div>
+          </motion.div> */}
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -121,7 +134,7 @@ export default function OrderForm() {
           >
             <Textarea
               name="message"
-              placeholder="Your Message"
+              placeholder=" I want to order ... (Please add your number) "
               value={formData.message}
               onChange={handleChange}
               required
@@ -139,7 +152,7 @@ export default function OrderForm() {
               className="w-full cursor-pointer bg-white text-black hover:bg-neutral-200 transition-colors duration-200 rounded-xl text-base py-2 font-medium"
               disabled={loading}
             >
-              {loading ? "Sending..." : "Submit Order"}
+              {loading ? "Sending..." : "Send Message"}
             </Button>
           </motion.div>
 
@@ -150,8 +163,8 @@ export default function OrderForm() {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5 }}
             >
-              Your order has been sent successfully. We will contact you. Thanks
-              for your interest!
+              Your message has been sent successfully! We&#39;ll get back to you
+              soon.
             </motion.p>
           )}
         </form>

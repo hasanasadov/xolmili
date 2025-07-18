@@ -7,7 +7,7 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="relative dark:bg-black text-black bg-white px-6 py-16 overflow-hidden border-t border-zinc-800 shadow-[0_-10px_200px_#0ff5]">
+    <footer className="relative dark:bg-black text-black bg-white px-6 pt-12 pb-8 overflow-hidden border-t border-zinc-800 dark:shadow-[0_20px_40px_#fff]  shadow-[0_20px_40px_#000]">
       <div className="container mx-auto relative z-10">
         {/* Neon glow background effect */}
         <div className="absolute inset-0 pointer-events-none">
@@ -24,7 +24,7 @@ export default function Footer() {
           {/* Company Info */}
           <div>
             <Link href={PATHS.HOME}>
-              <h2 className="text-3xl font-extrabold mb-4 dark:text-cyan-400 text-cyan-600 drop-shadow-[0_0_10px_#0ff]">
+              <h2 className="text-3xl font-extrabold mb-4 dark:text-white text-cyan-600 drop-shadow-[0_0_0.5px_#0ff]">
                 Kholmili Co.
               </h2>
             </Link>
@@ -42,7 +42,7 @@ export default function Footer() {
           {/* Contact Info */}
           <div>
             <Link href={PATHS.CONTACT}>
-              <h3 className="text-xl font-semibold mb-5 dark:text-purple-400 text-purple-600 drop-shadow-[0_0_10px_#a855f7]">
+              <h3 className="text-xl font-semibold mb-5 dark:text-cyan-100 text-cyan-600 drop-shadow-[0_0_0.5px_#0ff]">
                 Contact Us
               </h3>
             </Link>
@@ -97,7 +97,7 @@ export default function Footer() {
           {/* Call to Action */}
           <motion.div
             onClick={() => (window.location.href = PATHS.CONTACT)}
-            className="backdrop-blur-xl cursor-pointer bg-white/5 p-6 rounded-2xl border border-zinc-700 dark:shadow-[0_0_40px_#0ff] shadow-[0_0_40px_#0af] dark:hover:shadow-[0_0_60px_#0ff] hover:shadow-[0_0_60px_#0ff] transition duration-200"
+            className="backdrop-blur-xl  cursor-pointer bg-white/5 p-6 rounded-2xl border border-zinc-700 dark:shadow-[0_0_5px_#fff] shadow-[0_0_5px_#999] dark:hover:shadow-[0_0_10px_#fff] hover:shadow-[0_0_10px_#999] transition duration-200"
           >
             <h3 className="text-lg font-semibold dark:text-white mb-2">
               Let’s Talk

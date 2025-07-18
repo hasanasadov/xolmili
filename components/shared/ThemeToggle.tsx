@@ -22,7 +22,7 @@ export function ThemeToggle() {
     <Button
       onClick={() => setTheme(isDark ? "light" : "dark")}
       variant="outline"
-      className="flex items-center gap-2 transition-all duration-300 shadow-[0_0_10px_#0ff]"
+      className="flex items-center gap-2 transition-all duration-300 dark:shadow-[0_0_10px_#fff] "
     >
       {isDark ? (
         <Sun className="w-5 h-5 !text-yellow-400 transition-transform duration-300 hover:rotate-90" />

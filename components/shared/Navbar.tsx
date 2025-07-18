@@ -13,7 +13,7 @@ const Navbar = () => {
   const pathname = usePathname();
 
   return (
-    <nav className="sticky p-2 top-0 w-full z-50 dark:bg-white/10 bg-white/90 backdrop-blur-md border-b border-white/20">
+    <nav className="sticky transition duration-500 p-2 top-0 w-full z-50 dark:bg-white/10 bg-white/90 backdrop-blur-md border-b border-white/20">
       <div className="container mx-auto flex justify-between items-center h-14">
         <div
           className=" h-[calc(100%+8px)]  drop-shadow-[0_0_2px_#fff] cursor-pointer"

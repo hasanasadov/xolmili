@@ -31,7 +31,7 @@ export default function RootLayout({
 }) {
   return (
     <html className="" lang="en" suppressHydrationWarning>
-      <body className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-black text-white">
+      <body className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-black text-white transition duration-500">
         <CursorWarningWrapper>
           <ThemeProvider>
             <Navbar />

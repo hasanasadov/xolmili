@@ -2,7 +2,7 @@ export default function Head() {
   return (
     <>
       <title>Xolmili – Official Website</title>
-      <link rel="icon" href="/logo.ico" />
+      <link rel="icon" href="/favicon.ico" />
       <meta
         name="description"
         content="Welcome to the official website of Xolmili."
