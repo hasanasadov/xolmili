@@ -1,3 +1,5 @@
+import { SpeedInsights } from "@vercel/speed-insights/next";
+
 import type { Metadata } from "next";
 import "./globals.css";
 import { ThemeProvider } from "@/components/shared/ThemeProvider";
@@ -39,6 +41,7 @@ export default function RootLayout({
             <AntiInspect />
             {/* <NeonCursor /> */}
             {children}
+            <SpeedInsights />
             <Footer />
           </ThemeProvider>
         </CursorWarningWrapper>
