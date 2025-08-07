@@ -1,8 +1,8 @@
 "use client";
 
-import { PATHS } from "@/constants";
-import { motion } from "framer-motion";
 import { Mail, Instagram, Phone, Clock } from "lucide-react";
+import { motion } from "framer-motion";
+import { PATHS } from "@/constants";
 import Link from "next/link";
 
 export default function Footer() {
@@ -25,17 +25,16 @@ export default function Footer() {
           <div>
             <Link href={PATHS.HOME}>
               <h2 className="text-3xl font-extrabold mb-4 dark:text-white text-cyan-600 drop-shadow-[0_0_0.5px_#0ff]">
-                Kholmili Co.
+                Xolmili Co.
               </h2>
             </Link>
             <p className="text-sm dark:text-zinc-300 text-black leading-relaxed">
-              Established in{" "}
-              <span className="dark:text-white font-medium">February 2010</span>{" "}
-              by{" "}
-              <span className="dark:text-white font-medium">Alirza Aliyev</span>
-              . We specialize in machine tool parts: couplings, pulleys, chains,
-              gears, bearings, and more. We offer part sizing and custom orders
-              at all sales points.
+              Əsası qoyulub{" "}
+              <span className="dark:text-white font-medium">Fevral 2010</span>{" "}
+              <span className="dark:text-white font-medium">Alirza Aliyev</span>{" "}
+              tərəfindən . Ölkədə yegənə və rəqibi olmayan avtomatlaşdırılma
+              üçün istənilən növ ehtiyat hissəsini əla növ hazırlanması bizim
+              əsas və ən önəmli məqsədimiz və işimizdir.
             </p>
           </div>
 
@@ -43,7 +42,7 @@ export default function Footer() {
           <div>
             <Link href={PATHS.CONTACT}>
               <h3 className="text-xl font-semibold mb-5 dark:text-cyan-100 text-cyan-600 drop-shadow-[0_0_0.5px_#0ff]">
-                Contact Us
+                Bizimlə Əlaqə
               </h3>
             </Link>
             <div className="space-y-4 text-sm dark:text-zinc-300">
@@ -89,7 +88,7 @@ export default function Footer() {
                 className="cursor-pointer dark:hover:text-cyan-300 hover:text-cyan-600 duration-300 flex items-center gap-3 w-fit"
               >
                 <Clock className="dark:text-cyan-400 text-cyan-600" size={18} />{" "}
-                Mon–Fri, 9 AM – 6 PM
+                B.e - Cümə, 9:00 - 18:00
               </Link>
             </div>
           </div>
@@ -97,21 +96,22 @@ export default function Footer() {
           {/* Call to Action */}
           <motion.div
             onClick={() => (window.location.href = PATHS.CONTACT)}
-            className="backdrop-blur-xl  cursor-pointer bg-white/5 p-6 rounded-2xl border border-zinc-700 dark:shadow-[0_0_5px_#fff] shadow-[0_0_5px_#999] dark:hover:shadow-[0_0_10px_#fff] hover:shadow-[0_0_10px_#999] transition duration-200"
+            className="backdrop-blur-xl glass  cursor-pointer bg-white/5 p-6 rounded-2xl border border-zinc-700 dark:shadow-[0_0_5px_#fff] !shadow-[0_0_5px_#999] dark:hover:!shadow-[0_0_10px_#fff] hover:!shadow-[0_0_10px_#999] transition duration-200"
           >
             <h3 className="text-lg font-semibold dark:text-white mb-2">
-              Let’s Talk
+              Əlaqədə olaq
             </h3>
             <p className="text-sm dark:text-zinc-300">
-              For custom parts, sizing advice, or urgent orders — contact us
-              now. We&apos;re here to help.
+              Xüsusi sifarişlər və ya əlavə məlumat üçün əlaqədə olaq.
+              Suallarınızı cavablardırmağa hər zaman hazırıq. Offline və ya
+              online.
             </p>
           </motion.div>
         </motion.div>
 
         {/* Footer Bottom */}
         <div className="mt-12 text-center text-xs text-zinc-500 relative z-10">
-          © {new Date().getFullYear()} Kholmili. All rights reserved.
+          © {new Date().getFullYear()} Kholmili. Bütün hüquqlar qorunur.
         </div>
       </div>
     </footer>

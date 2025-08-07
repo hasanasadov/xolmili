@@ -1,13 +1,14 @@
 "use client";
-import React from "react";
-import { Button } from "../ui/button";
-import Link from "next/link";
-import { MenuIcon, XIcon } from "lucide-react";
-import { usePathname } from "next/navigation";
-import { PATHS } from "@/constants";
-import { ThemeToggle } from "./ThemeToggle";
+
 import { motion, AnimatePresence } from "framer-motion";
+import { MenuIcon, XIcon } from "lucide-react";
+import { ThemeToggle } from "./ThemeToggle";
+import { usePathname } from "next/navigation";
+import { Button } from "../ui/button";
+import { PATHS } from "@/constants";
 import Image from "next/image";
+import Link from "next/link";
+import React from "react";
 
 const Navbar = () => {
   const [isDialogOpen, setIsDialogOpen] = React.useState(false);
@@ -45,7 +46,7 @@ const Navbar = () => {
               }
               variant="ghost"
             >
-              Home
+              Əsas
             </Button>
           </Link>
 
@@ -58,7 +59,7 @@ const Navbar = () => {
               }
               variant="ghost"
             >
-              Catalogue
+              Kataloq
             </Button>
           </Link>
 
@@ -71,7 +72,7 @@ const Navbar = () => {
               }
               variant="ghost"
             >
-              About
+              Haqqımızda
             </Button>
           </Link>
 
@@ -84,7 +85,7 @@ const Navbar = () => {
               }
               variant="ghost"
             >
-              Contact
+              Əlaqə
             </Button>
           </Link>
         </div>
@@ -98,7 +99,7 @@ const Navbar = () => {
               }
               variant="ghost"
             >
-              Make an Order
+              Sifariş ver
             </Button>
           </Link>
 
@@ -110,7 +111,7 @@ const Navbar = () => {
                   : "text-white"
               }
             >
-              Login
+              Daxil ol
             </Button>
           </Link>
           <ThemeToggle />
@@ -142,7 +143,7 @@ const Navbar = () => {
 
                 <Link href={PATHS.HOME} onClick={() => setIsDialogOpen(false)}>
                   <Button variant="ghost" className="w-full justify-start">
-                    Home
+                    Əsas
                   </Button>
                 </Link>
 
@@ -151,13 +152,13 @@ const Navbar = () => {
                   onClick={() => setIsDialogOpen(false)}
                 >
                   <Button variant="ghost" className="w-full justify-start">
-                    Catalogue
+                    Kataloq
                   </Button>
                 </Link>
 
                 <Link href={PATHS.ABOUT} onClick={() => setIsDialogOpen(false)}>
                   <Button variant="ghost" className="w-full justify-start">
-                    About
+                    Haqqımızda
                   </Button>
                 </Link>
 
@@ -166,22 +167,27 @@ const Navbar = () => {
                   onClick={() => setIsDialogOpen(false)}
                 >
                   <Button variant="ghost" className="w-full justify-start">
-                    Contact
+                    Əlaqə
                   </Button>
                 </Link>
 
                 <Link href={PATHS.ORDER} onClick={() => setIsDialogOpen(false)}>
                   <Button variant="ghost" className="w-full justify-start">
-                    Make an Order
+                    Sifariş ver
                   </Button>
                 </Link>
 
-                <Link href={PATHS.LOGIN} onClick={() => setIsDialogOpen(false)}>
-                  <Button className="w-full justify-start">Login</Button>
-                </Link>
+                <div className="flex !w-full justify-evenly mt-20">
+                  <Link
+                    href={PATHS.LOGIN}
+                    onClick={() => setIsDialogOpen(false)}
+                  >
+                    <Button className="!w-full">Daxil ol</Button>
+                  </Link>
 
-                <div className="pt-4">
-                  <ThemeToggle />
+                  <div>
+                    <ThemeToggle  />
+                  </div>
                 </div>
               </motion.aside>
             )}

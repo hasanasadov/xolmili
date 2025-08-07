@@ -1,10 +1,10 @@
 "use client";
 
+import { Textarea } from "@/components/ui/textarea";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 // import { PhoneInput } from "react-international-phone";
 // import emailjs from "@emailjs/browser";
 
@@ -61,25 +61,25 @@ export default function OrderForm() {
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
+      initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className="md:min-h-[90vh]   bg-gradient-to-br dark:from-black from-white dark:via-gray-900 via-gray-200 dark:to-black to-white dark:text-white text-black px-6 py-16 flex items-center justify-evenly md:flex-row flex-col gap-10"
+      className="md:min-h-[90vh]  bg-gradient-to-br dark:from-black from-white dark:via-gray-900 via-gray-200 dark:to-black to-white dark:text-white text-black px-6 py-16 flex items-center justify-evenly md:flex-row flex-col gap-10"
     >
       <div className="h-full flex items-start text-3xl">
-        Write what you want to order .
+        Fikirlərinizi bizimlə rahatlıqla bölüşə bilərsiniz
       </div>
-      <div className="md:h-8/12 md:w-1/3 w-full h-full backdrop-blur-xl cursor-pointer dark:bg-white/5 md:p-6 p-4 rounded-md border border-zinc-700 transition duration-100 ease-in-out">
+      <div className="md:h-8/12 glass lg:w-1/3 w-full h-full backdrop-blur-xl cursor-pointer dark:bg-white/5 md:p-6 p-4 rounded-md border border-zinc-700 transition duration-100 ease-in-out">
         <motion.h1
           initial={{ opacity: 0, scale: 0.98 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6 }}
           className="text-3xl font-semibold mb-8 text-center tracking-wide dark:text-neutral-100 text-primary"
         >
-          Please feel free to message us
+          Sifarişin nə olduğunu yazın
         </motion.h1>
 
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <form onSubmit={handleSubmit} className="space-y-6 ">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -87,7 +87,7 @@ export default function OrderForm() {
           >
             <Input
               name="name"
-              placeholder="Full Name"
+              placeholder="Tam Ad"
               value={formData.name}
               onChange={handleChange}
               required
@@ -134,7 +134,7 @@ export default function OrderForm() {
           >
             <Textarea
               name="message"
-              placeholder=" I want to order ... (Please add your number) "
+              placeholder="Mən çarxlar sifariş etmək istəyirəm ... (Nömrənizi əlavə edin) "
               value={formData.message}
               onChange={handleChange}
               required
@@ -152,7 +152,7 @@ export default function OrderForm() {
               className="w-full cursor-pointer bg-white text-black hover:bg-neutral-200 transition-colors duration-200 rounded-xl text-base py-2 font-medium"
               disabled={loading}
             >
-              {loading ? "Sending..." : "Send Message"}
+              {loading ? "Göndərilir..." : "Mesajı göndər"}
             </Button>
           </motion.div>
 

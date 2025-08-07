@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-export default function CursorWarningWrapper({
+export default function CursorWarningProvider({
   children,
 }: {
   children: React.ReactNode;
@@ -68,24 +68,8 @@ export default function CursorWarningWrapper({
     <>
       {children}
       {showWarning && (
-        <div
-          style={{
-            position: "fixed",
-            top: "20px",
-            left: "50%",
-            transform: "translateX(-50%)",
-            backgroundColor: "#ff4d4f",
-            color: "#fff",
-            padding: "10px 20px",
-            borderRadius: "8px",
-            zIndex: 9999,
-            fontWeight: "bold",
-            fontSize: "18px",
-            boxShadow: "0 2px 10px rgba(0,0,0,0.2)",
-            pointerEvents: "none",
-          }}
-        >
-          Not allowed to steal
+        <div className="glass !fixed !bottom-5 !right-5  !border-red-700 text-red-500 z-[9999] font-bold text-lg px-5 py-2.5 rounded-xl ">
+          Icazə yoxdur
         </div>
       )}
     </>

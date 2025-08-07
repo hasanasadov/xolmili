@@ -1,11 +1,13 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
-import { Input } from "@/components/ui/input";
 import { products } from "@/constants/index";
+import { Product } from "@/types";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import RenderIf from "@/lib/RenderIf";
 import Image from "next/image";
+import Link from "next/link";
 
 const PRODUCTS_PER_PAGE = 3;
 
@@ -53,10 +55,10 @@ export default function CataloguePage() {
   }, [selectedProduct, isMobile]);
 
   return (
-    <div className="min-h-screen flex flex-col md:flex-row overflow-hidden bg-gradient-to-br from-gray-100 to-white dark:from-gray-900 dark:to-black text-black dark:text-white">
+    <div className="min-h-[90vh] flex flex-col md:flex-row overflow-hidden bg-gradient-to-br from-gray-100 to-white dark:from-gray-900 dark:to-black text-black dark:text-white">
       <aside className="w-full md:w-1/3 lg:w-1/4 h-auto md:h-screen overflow-y-auto border-b md:border-b-0 md:border-r border-gray-300 dark:border-gray-700 p-6">
         <h2 className="text-2xl font-bold mb-4 text-center text-cyan-600 dark:text-cyan-400">
-          Catalogue
+          Kataloq
         </h2>
 
         {/* Axtarış sahəsi */}
@@ -88,9 +90,7 @@ export default function CataloguePage() {
                 height={80}
                 className=" object-contain"
               />
-              <span className="font-medium text-cyan-700 dark:text-cyan-300">
-                {product.name}
-              </span>
+              <span className="font-medium text-secondary">{product.name}</span>
             </div>
           ))}
         </div>
@@ -122,37 +122,44 @@ export default function CataloguePage() {
         ref={detailRef}
         className="flex-1 p-6 md:p-10 bg-gray-100 dark:bg-gray-950"
       >
-        {selectedProduct ? (
+        <RenderIf condition={!!selectedProduct}>
           <ProductDetail product={selectedProduct} />
-        ) : (
-          <div className="max-w-4xl mx-auto text-center text-gray-600 dark:text-gray-300 text-xl font-medium mt-20">
+        </RenderIf>
+        <RenderIf condition={!selectedProduct}>
+          <div className="mx-auto h-full flex items-center justify-center text-center text-gray-600 dark:text-gray-300 text-xl font-medium my-10 md:m-0">
             Zəhmət olmasa məhsul seçin.
           </div>
-        )}
+        </RenderIf>
       </main>
     </div>
   );
 }
 
-const ProductDetail = ({ product }: { product: Product }) => {
+export const ProductDetail = ({
+  product,
+}: {
+  product?: Product | undefined | null;
+}) => {
   return (
-    <div className="max-w-5xl mx-auto rounded-xl bg-white dark:bg-gray-900 p-6 md:p-8 shadow-xl border border-gray-200 dark:border-cyan-700">
-      <h1 className="text-center text-3xl md:text-4xl font-bold text-cyan-700 dark:text-cyan-400 mb-4">
-        {product.name}
+    <div className="glss  max-w-5xl mx-auto rounded-xl  p-6 md:p-8 pb-20 ">
+      <h1 className="text-center text-3xl md:text-4xl font-bold text-secondary mb-12 md:mb-20">
+        {product?.name}
       </h1>
       <div className="grid md:grid-cols-2 gap-6 items-center">
-        <div className="w-full relative aspect-video overflow-hidden rounded-lg shadow">
-          <Image
-            src={product.image}
-            alt={product.name}
-            className=" object-contain"
-            fill
-          />
+        <div className="w-full glass dark:!bg-black duration-300 relative aspect-video overflow-hidden rounded-lg shadow">
+          <RenderIf condition={!!product?.image}>
+            <Image
+              src={product!.image}
+              alt={product!.name}
+              className=" object-contain"
+              fill
+            />
+          </RenderIf>
         </div>
         <div className="text-gray-700 dark:text-gray-300 text-lg leading-relaxed">
-          <p>{product.description}</p>
+          <p>{product?.description}</p>
           <div className="mt-6">
-            <Link href={`/catalogue/${product.id}`}>
+            <Link href={`/catalogue/${product?.id}`}>
               <Button className="bg-cyan-600 hover:bg-cyan-700 text-white px-6 py-2 rounded-lg">
                 Ətraflı
               </Button>

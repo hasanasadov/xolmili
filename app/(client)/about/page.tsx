@@ -38,7 +38,7 @@ export default function AboutPage() {
             className="backdrop-blur-lg bg-white/10 rounded-2xl md:p-8 p-4 shadow-xl border dark:border-white/10 border-black/20"
           >
             <h2 className="md:text-3xl text-lg font-semibold mb-4 dark:text-cyan-300 text-cyan-600">
-              Why Choose Us?
+              Niyə biz ?
             </h2>
             <p className="dark:text-gray-300 text-gray-700">
               The main advantages of the &ldquo;Kholmili&ldquo; company are its
@@ -57,7 +57,7 @@ export default function AboutPage() {
             className="backdrop-blur-lg bg-white/10 rounded-2xl md:p-8 p-4 shadow-xl border dark:border-white/10 border-black/20"
           >
             <h2 className="md:text-3xl text-lg font-semibold mb-4 dark:text-cyan-300 text-cyan-600">
-              Make an Order
+              Sifariş ver
             </h2>
             <div className="flex flex-col gap-4 items-center">
               <div>
@@ -70,12 +70,12 @@ export default function AboutPage() {
                 </p>
               </div>
               <div
-                className="w-fit"
+                className="w-fit animate-bounce"
                 onClick={() => {
                   window.location.href = PATHS.ORDER;
                 }}
               >
-                <RGBButton>Make an Order</RGBButton>
+                <RGBButton >Sifariş ver</RGBButton>
               </div>
             </div>
           </motion.div>
@@ -86,11 +86,11 @@ export default function AboutPage() {
           transition={{ delay: 0.3, duration: 0.8 }}
           className="backdrop-blur-lg bg-white/10 rounded-2xl p-4 md:p-8 shadow-xl border dark:border-white/10 border-black/20 mt-10"
         >
-          <h2 className="text-3xl font-semibold mb-4 dark:text-cyan-300 text-cyan-600">
-            Our Location
+          <h2 className="text-3xl font-semibold mb-4  dark:text-cyan-300 text-cyan-600">
+            Bizim məkanımız
           </h2>
           <p className="dark:text-gray-300 text-gray-700 mb-4">
-            Baku, Azerbaijan - 1000
+            Bakı, Azərbaycan - 1000
           </p>
           <div className="rounded-xl overflow-hidden h-64 border dark:border-white/10 border-black/20">
             <iframe

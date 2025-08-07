@@ -1,38 +1,48 @@
 "use client";
 
+import { LucideClockFading, Moon, Sun } from "lucide-react";
+import { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
 import { Button } from "../ui/button";
-import { Moon, Sun } from "lucide-react";
-import { useEffect, useState } from "react";
+import RenderIf from "@/lib/RenderIf";
 
 export function ThemeToggle() {
   const { setTheme, resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
-  // To prevent mismatch during hydration
+  let isDark = false;
   useEffect(() => {
     setMounted(true);
   }, []);
 
-  if (!mounted) return null;
+  // if (!mounted) return null;
 
-  const isDark = resolvedTheme === "dark";
-
+  if (mounted) {
+    isDark = resolvedTheme === "dark";
+  }
   return (
     <Button
       onClick={() => setTheme(isDark ? "light" : "dark")}
       className="flex items-center gap-2 transition-all duration-300 dark:shadow-[0_0_10px_#fff] "
     >
-      {isDark ? (
-        <Sun className="w-5 h-5 !text-yellow-400 transition-transform duration-300 hover:rotate-90" />
-      ) : (
-        <Moon className="w-5 h-5 !text-blue-600 transition-transform duration-300 hover:rotate-90" />
-      )}
-      {/* <span
-        className={`hidden sm:inline ${isDark ? "text-white" : "text-black"} `}
+      <RenderIf condition={!mounted}>
+        <LucideClockFading />
+      </RenderIf>
+      <RenderIf condition={mounted}>
+        <RenderIf condition={isDark}>
+          <Sun className="w-5 h-5 !text-yellow-400 transition-transform duration-300 group-hover:!rotate-[-450deg]" />
+        </RenderIf>
+        <RenderIf condition={!isDark}>
+          <Moon className="w-5 h-5 !text-blue-600 transition-transform duration-300 hover:!rotate-[-450deg]  " />
+        </RenderIf>
+      </RenderIf>
+      <span
+        className={`sm:hidden inline ${isDark ? "text-white" : "text-black"} `}
       >
-        {isDark ? "Light Mode" : "Dark Mode"}
-      </span> */}
+        {" "}
+        {isDark ? "Gündüz Modu" : "Gecə Modu"}{" "}
+      </span>{" "}
     </Button>
   );
 }
+/* <span className={`hidden sm:inline ${isDark ? "text-white" : "text-black"} `} > {isDark ? "Light Mode" : "Dark Mode"} </span> */

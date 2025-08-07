@@ -1,7 +1,7 @@
 export default function Head() {
   return (
     <>
-      <title>Xolmili – Official Website</title>
+      <title>Xolmili - Rəsmi sayt</title>
       <link rel="icon" href="/favicon.ico" />
       <meta
         name="description"

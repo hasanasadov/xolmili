@@ -30,8 +30,8 @@ export default function ContactPage() {
     },
     {
       icon: Clock10Icon,
-      label: "Working Hours",
-      value: "Mon-Fri, 9 AM - 6 PM",
+      label: "İş saatları",
+      value: "B.e - Cümə, 9:00 - 18:00",
       link: "",
     },
   ];
@@ -64,8 +64,8 @@ export default function ContactPage() {
           className="max-w-5xl mx-auto text-center"
         >
           <h1 className="md:text-5xl text-3xl text-start md:text-center font-extrabold mb-4 tracking-wide">
-            <span className="dark:text-white text-black">Contact </span>
-            <span className="dark:text-cyan-300 text-cyan-600">Us</span>
+            <span className="dark:text-white text-black">Bizimlə </span>
+            <span className="dark:text-cyan-300 text-cyan-600">əlaqə</span>
           </h1>
           <p className="dark:text-gray-300 text-gray-700 md:text-lg text-start md:text-center ">
             Here at Kholmili, we value your feedback and inquiries. Whether you
@@ -86,10 +86,10 @@ export default function ContactPage() {
             className="backdrop-blur-lg bg-white/10 rounded-2xl p-4 md:p-8 shadow-xl border dark:border-white/10 border-black/20"
           >
             <h2 className="text-3xl font-semibold mb-4  dark:text-cyan-300 text-cyan-600">
-              Our Location
+              Bizim məkanımız
             </h2>
             <p className="dark:text-gray-300 text-gray-700 mb-4">
-              Baku, Azerbaijan - 1000
+              Bakı, Azərbaycan - 1000
             </p>
             <div className="rounded-xl overflow-hidden h-64 border border-white/10">
               <iframe
@@ -110,15 +110,13 @@ export default function ContactPage() {
             className="backdrop-blur-lg bg-white/10 rounded-2xl p-4 md:p-8 shadow-xl border dark:border-white/10 border-black/20"
           >
             <h2 className="text-3xl font-semibold mb-4 dark:text-cyan-300 text-cyan-600">
-              Contact Details
+              Əlaqə Detalları
             </h2>
             <div className="dark:text-gray-300 text-gray-700  grid lg:grid-cols-4 md:grid-cols-2">
               {renderContactDetails()}
             </div>
             <p className="dark:text-gray-300 text-gray-700 mt-4">
-              For any inquiries, please feel free to reach out to us via the
-              contact details provided above. We look forward to hearing from
-              you!
+              İstənilən növ bizimlə əlaqəli suallar verməyə çəkinməyin.
             </p>
           </motion.div>
         </div>
