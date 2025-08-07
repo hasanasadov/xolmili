@@ -1,3 +1,5 @@
+import { Product } from "@/types";
+
 export const products: Product[] = [
   {
     id: 1,
@@ -87,3 +89,5 @@ export const PATHS = {
   FAQ: "/faq",
   SUPPORT: "/support",
 };
+
+export const BASE_URL = "http://localhsor:3000"

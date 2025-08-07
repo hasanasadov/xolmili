@@ -6,9 +6,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { ProjectDetailPageProps } from "@/types";
 
-const ProductDetailPage = (props: ProjectDetailPageProps) => {
-  const id = props.params.id;
-
+const ProductDetailPage = async (props: ProjectDetailPageProps) => {
+  const { id } = await props.params;
   const product = products.find((p) => p.id == Number(id));
   return (
     <div className=" min-h-[70vh] my-10  text-white">

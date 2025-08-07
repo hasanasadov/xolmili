@@ -135,7 +135,7 @@ export default function CataloguePage() {
   );
 }
 
-export const ProductDetail = ({
+const ProductDetail = ({
   product,
 }: {
   product?: Product | undefined | null;
