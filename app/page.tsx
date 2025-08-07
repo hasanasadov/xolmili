@@ -1,6 +1,7 @@
 "use client";
 
 import RGBButton from "@/components/shared/RGButton";
+import Image from "next/image";
 import React from "react";
 
 const HomePage = () => {
@@ -8,10 +9,11 @@ const HomePage = () => {
     <div className="p-4">
       <div className="absolute top-0 right-0 w-[100vw] z-[-1]">
         <div className="relative w-full h-screen">
-          <img
-            className="w-full h-full object-cover animate-pulse"
+          <Image
+            className=" object-cover animate-pulse"
             src="/giphy.gif"
             alt="Background Animation"
+            fill
           />
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(0,0,0,0)_0%,_rgba(0,0,0,0.7)_100%)] pointer-events-none" />
         </div>

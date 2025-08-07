@@ -2,11 +2,12 @@
 import React from "react";
 import { Button } from "../ui/button";
 import Link from "next/link";
-import { MenuIcon } from "lucide-react";
+import { MenuIcon, XIcon } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { PATHS } from "@/constants";
 import { ThemeToggle } from "./ThemeToggle";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 
 const Navbar = () => {
   const [isDialogOpen, setIsDialogOpen] = React.useState(false);
@@ -19,11 +20,19 @@ const Navbar = () => {
           className=" h-[calc(100%+8px)]  drop-shadow-[0_0_2px_#fff] cursor-pointer"
           onClick={() => (window.location.href = PATHS.HOME)}
         >
-          <img className="dark:hidden h-full" src="/logo.png" alt="Logo" />
-          <img
-            className="hidden dark:block h-full"
+          <Image
+            className="dark:hidden h-full"
+            src="/logo.png"
+            alt="Logo"
+            width={100}
+            height={"100"}
+          />
+          <Image
+            className="dark:block h-full hidden"
             src="/logoWhite.png"
             alt="Logo"
+            width={100}
+            height={"100"}
           />
         </div>
         <div className="hidden lg:flex space-x-4">
@@ -31,10 +40,10 @@ const Navbar = () => {
             <Button
               className={
                 pathname === PATHS.HOME
-                  ? "dark:!text-cyan-400 border border-[rgb(0,0,0,0.3)] dark:border-[rgb(255,255,255,0.1)]"
+                  ? "glass-button dark:!text-cyan-400 border border-[rgb(0,0,0,0.3)] dark:border-[rgb(255,255,255,0.1)]"
                   : ""
               }
-              variant="link"
+              variant="ghost"
             >
               Home
             </Button>
@@ -44,10 +53,10 @@ const Navbar = () => {
             <Button
               className={
                 pathname === PATHS.CATALOGUE
-                  ? "dark:!text-cyan-400 border border-[rgb(0,0,0,0.3)] dark:border-[rgb(255,255,255,0.1)]"
+                  ? "glass-button dark:!text-cyan-400 border border-[rgb(0,0,0,0.3)] dark:border-[rgb(255,255,255,0.1)]"
                   : ""
               }
-              variant="link"
+              variant="ghost"
             >
               Catalogue
             </Button>
@@ -57,10 +66,10 @@ const Navbar = () => {
             <Button
               className={
                 pathname === PATHS.ABOUT
-                  ? "dark:!text-cyan-400 border border-[rgb(0,0,0,0.3)] dark:border-[rgb(255,255,255,0.1)]"
+                  ? "glass-button dark:!text-cyan-400 border border-[rgb(0,0,0,0.3)] dark:border-[rgb(255,255,255,0.1)]"
                   : ""
               }
-              variant="link"
+              variant="ghost"
             >
               About
             </Button>
@@ -70,10 +79,10 @@ const Navbar = () => {
             <Button
               className={
                 pathname === PATHS.CONTACT
-                  ? "dark:!text-cyan-400 border border-[rgb(0,0,0,0.3)] dark:border-[rgb(255,255,255,0.1)]"
+                  ? "glass-button dark:!text-cyan-400 border border-[rgb(0,0,0,0.3)] dark:border-[rgb(255,255,255,0.1)]"
                   : ""
               }
-              variant="link"
+              variant="ghost"
             >
               Contact
             </Button>
@@ -84,10 +93,10 @@ const Navbar = () => {
             <Button
               className={
                 pathname === PATHS.ORDER
-                  ? "dark:!text-cyan-400 border border-[rgb(0,0,0,0.3)] dark:border-[rgb(255,255,255,0.1)]"
+                  ? "glass-button dark:!text-cyan-400 border border-[rgb(0,0,0,0.3)] dark:border-[rgb(255,255,255,0.1)]"
                   : ""
               }
-              variant="link"
+              variant="ghost"
             >
               Make an Order
             </Button>
@@ -123,13 +132,13 @@ const Navbar = () => {
                 exit={{ x: "-100%" }}
                 transition={{ type: "tween", duration: 0.5 }}
               >
-                <button
+                <Button
                   onClick={() => setIsDialogOpen(false)}
                   className="self-end text-2xl font-bold"
                   aria-label="Close menu"
                 >
-                  ×
-                </button>
+                  <XIcon />
+                </Button>
 
                 <Link href={PATHS.HOME} onClick={() => setIsDialogOpen(false)}>
                   <Button variant="ghost" className="w-full justify-start">
