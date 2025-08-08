@@ -48,33 +48,33 @@ export default function Footer() {
             <div className="space-y-4 text-sm dark:text-zinc-300">
               <Link
                 href={"mailto:xolmili@gmail.com"}
-                className="cursor-pointer dark:hover:text-cyan-300 hover:text-cyan-600 duration-300 flex items-center gap-3 w-fit"
+                className="cursor-pointer dark:hover:text-cyan-400 hover:text-cyan-600 duration-300 flex items-center gap-3 w-fit"
               >
-                <Mail className="dark:text-cyan-400 text-cyan-600" size={18} />{" "}
+                <Mail className="text-secondary" size={18} />{" "}
                 xolmili@gmail.com
               </Link>
               <Link
                 href={"tel:+994705048888"}
-                className="cursor-pointer dark:hover:text-cyan-300 hover:text-cyan-600  duration-300 flex items-center gap-3 w-fit"
+                className="cursor-pointer dark:hover:text-cyan-400 hover:text-cyan-600  duration-300 flex items-center gap-3 w-fit"
               >
-                <Phone className="dark:text-cyan-400 text-cyan-600" size={18} />{" "}
+                <Phone className="text-secondary" size={18} />{" "}
                 Tel: +994 70 504 88 88
               </Link>
               <Link
-                className="cursor-pointer dark:hover:text-cyan-300 hover:text-cyan-600 duration-300 flex items-center gap-3 w-fit"
+                className="cursor-pointer dark:hover:text-cyan-400 hover:text-cyan-600 duration-300 flex items-center gap-3 w-fit"
                 href={"https://wa.me/994705048888"}
               >
-                <Phone className="dark:text-cyan-400 text-cyan-600" size={18} />{" "}
+                <Phone className="text-secondary" size={18} />{" "}
                 Whatsapp: +994 70 504 88 88
               </Link>
               <Link
                 target="_blank"
                 rel="noopener noreferrer"
                 href={"https://instagram.com/xolmili_"}
-                className="cursor-pointer dark:hover:text-cyan-300 hover:text-cyan-600 duration-300 flex items-center gap-3 w-fit"
+                className="cursor-pointer dark:hover:text-cyan-400 hover:text-cyan-600 duration-300 flex items-center gap-3 w-fit"
               >
                 <Instagram
-                  className="dark:text-cyan-400 text-cyan-600"
+                  className="text-secondary"
                   size={18}
                 />
                 @xolmili_
@@ -85,9 +85,9 @@ export default function Footer() {
                 }
                 target="_blank"
                 rel="noopener noreferrer"
-                className="cursor-pointer dark:hover:text-cyan-300 hover:text-cyan-600 duration-300 flex items-center gap-3 w-fit"
+                className="cursor-pointer dark:hover:text-cyan-400 hover:text-cyan-600 duration-300 flex items-center gap-3 w-fit"
               >
-                <Clock className="dark:text-cyan-400 text-cyan-600" size={18} />{" "}
+                <Clock className="text-secondary" size={18} />{" "}
                 B.e - Cümə, 9:00 - 18:00
               </Link>
             </div>

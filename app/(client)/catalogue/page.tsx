@@ -57,7 +57,7 @@ export default function CataloguePage() {
   return (
     <div className="min-h-[90vh] flex flex-col md:flex-row overflow-hidden bg-gradient-to-br from-gray-100 to-white dark:from-gray-900 dark:to-black text-black dark:text-white">
       <aside className="w-full md:w-1/3 lg:w-1/4 h-auto md:h-screen overflow-y-auto border-b md:border-b-0 md:border-r border-gray-300 dark:border-gray-700 p-6">
-        <h2 className="text-2xl font-bold mb-4 text-center text-cyan-600 dark:text-cyan-400">
+        <h2 className="text-2xl font-bold mb-4 text-center text-secondary">
           Kataloq
         </h2>
 
@@ -79,18 +79,18 @@ export default function CataloguePage() {
               onClick={() => setSelectedProduct(product)}
               className={`cursor-pointer glass-border p-4 rounded-lg border shadow-sm hover:shadow-md transition-all duration-300 flex flex-col items-center space-y-2 text-center ${
                 selectedProduct?.id === product.id
-                  ? "bg-cyan-100 dark:bg-cyan-800/40"
-                  : "bg-white dark:bg-gray-800"
+                  ? "!bg-black/10 dark:!bg-white/10"
+                  : "!bg-white/5 dark:!bg-black/30"
               }`}
             >
               <Image
                 src={product.image}
                 alt={product.name}
-                width={80}
-                height={80}
+                width={100}
+                height={100}
                 className=" object-contain"
               />
-              <span className="font-medium text-secondary">{product.name}</span>
+              <span className="font-bold">{product.name}</span>
             </div>
           ))}
         </div>

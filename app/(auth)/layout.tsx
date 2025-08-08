@@ -34,7 +34,7 @@ export default function RootLayout({
               className=" object-cover z-10"
             />
           </div>
-          <div className="lg:flex !hidden dark:!flex right-0 z-10 lg:w-1/2    items-center justify-center border-r ">
+          <div className="right-0 z-10 lg:w-1/2 !hidden  dark:lg:!flex items-center justify-center border-r ">
             <Image
               src="/logoWhite.png"
               alt="image"

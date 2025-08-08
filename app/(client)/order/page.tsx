@@ -74,7 +74,7 @@ export default function OrderForm() {
           initial={{ opacity: 0, scale: 0.98 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6 }}
-          className="text-3xl font-semibold mb-8 text-center tracking-wide dark:text-neutral-100 text-primary"
+          className="text-3xl font-semibold mb-8 text-center tracking-wide dark:text-neutral-100 text-secondary"
         >
           Sifarişin nə olduğunu yazın
         </motion.h1>

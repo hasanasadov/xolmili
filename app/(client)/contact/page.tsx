@@ -7,6 +7,7 @@ import {
   MailIcon,
   PhoneCallIcon,
 } from "lucide-react";
+import Link from "next/link";
 
 export default function ContactPage() {
   const contactDetails = [
@@ -40,20 +41,21 @@ export default function ContactPage() {
     return contactDetails.map((detail, index) => (
       <div
         key={index}
-        className=" flex justify-start items-center mb-4 ark:text-gray-300 text-gray-400 dark:hover:text-cyan-300 hover:text-cyan-600 transition duration-300"
+        className=" flex  justify-start items-center mb-4 dark:text-gray-300 text-gray-400 dark:hover:text-cyan-400 hover:text-cyan-600 transition duration-300"
       >
         <detail.icon className="w-6 h-6 mr-2" />
-        <a
+        <Link
           href={detail.link}
           target="_blank"
           rel="noopener noreferrer"
-          className="dark:text-gray-300 text-gray-700 hover:underline dark:hover:text-cyan-300 hover:text-cyan-600 transition duration-300"
+          className="dark:text-gray-300 text-gray-700 hover:underline dark:hover:text-cyan-400 hover:text-cyan-600 transition duration-300"
         >
           {detail.label}: {detail.value}
-        </a>
+        </Link>
       </div>
     ));
   };
+
   return (
     <div className=" min-h-screen bg-gradient-to-br dark:from-black from-white dark:via-gray-900 via-gray-200 dark:to-black to-white dark:text-white px-6 py-16 ">
       <div className="container mx-auto ">
@@ -65,7 +67,7 @@ export default function ContactPage() {
         >
           <h1 className="md:text-5xl text-3xl text-start md:text-center font-extrabold mb-4 tracking-wide">
             <span className="dark:text-white text-black">Bizimlə </span>
-            <span className="dark:text-cyan-300 text-cyan-600">əlaqə</span>
+            <span className="text-secondary">əlaqə</span>
           </h1>
           <p className="dark:text-gray-300 text-gray-700 md:text-lg text-start md:text-center ">
             Here at Kholmili, we value your feedback and inquiries. Whether you
@@ -85,7 +87,7 @@ export default function ContactPage() {
             transition={{ delay: 0.3, duration: 0.8 }}
             className="backdrop-blur-lg bg-white/10 rounded-2xl p-4 md:p-8 shadow-xl border dark:border-white/10 border-black/20"
           >
-            <h2 className="text-3xl font-semibold mb-4  dark:text-cyan-300 text-cyan-600">
+            <h2 className="text-3xl font-semibold mb-4  text-secondary">
               Bizim məkanımız
             </h2>
             <p className="dark:text-gray-300 text-gray-700 mb-4">
@@ -109,7 +111,7 @@ export default function ContactPage() {
             transition={{ delay: 0.3, duration: 0.8 }}
             className="backdrop-blur-lg bg-white/10 rounded-2xl p-4 md:p-8 shadow-xl border dark:border-white/10 border-black/20"
           >
-            <h2 className="text-3xl font-semibold mb-4 dark:text-cyan-300 text-cyan-600">
+            <h2 className="text-3xl font-semibold mb-4 text-secondary">
               Əlaqə Detalları
             </h2>
             <div className="dark:text-gray-300 text-gray-700  grid lg:grid-cols-4 md:grid-cols-2">

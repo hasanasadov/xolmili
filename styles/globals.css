@@ -54,7 +54,7 @@
 
   --primary: oklch(52% 0.105 223.128);
   --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(52% 0.105 223.128);
+  --secondary: oklch(60.9% 0.126 221.723);
   --secondary-foreground: oklch(0.205 0 0);
   --muted: oklch(0.97 0 0);
   --muted-foreground: oklch(0.556 0 0);
@@ -88,7 +88,7 @@
   --popover-foreground: oklch(0.985 0 0);
   --primary: oklch(0.922 0 0);
   --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(86.5% 0.127 207.078);
+  --secondary: oklch(78.9% 0.154 211.53);
   --secondary-foreground: oklch(0.985 0 0);
   --muted: oklch(0.269 0 0);
   --muted-foreground: oklch(0.708 0 0);
@@ -182,7 +182,7 @@ body {
   position: relative;
   background-color: rgba(255, 255, 255, 0.03);
   backdrop-filter: blur(8px);
-  box-shadow: inset 0 2px 4px 0 rgba(123, 123, 123, 0.8);
+  box-shadow: inset 0 1px 4px 0 rgba(123, 123, 123, 0.8);
 
   border: 1px solid rgba(255, 255, 255, 0.1);
   display: flex;
@@ -193,10 +193,10 @@ body {
   /* z-index: 9999; */
   &:hover {
     background-color: rgba(255, 255, 255, 0.1);
-    box-shadow: inset 0 2px 20px 0 rgba(123, 123, 123, 1);
-    transition: 500ms all;
+    box-shadow: inset 0 0px 10px 0 rgba(123, 123, 123, 1);
+    transition: 300ms all;
   }
-  transition: 500ms all;
+  transition: 300ms all;
   overflow: hidden;
 }
 
@@ -210,8 +210,8 @@ body {
   border-radius: 1.6rem;
   &:hover {
     background-color: rgba(255, 255, 255, 0.1);
-    box-shadow: inset 0 2px 20px 0 rgba(123, 123, 123, 1);
-    transition: 500ms all;
+    box-shadow: inset 0 0px 10px 0 rgba(123, 123, 123, 1);
+    transition: 300ms all;
   }
 }
 .glass {
@@ -235,7 +235,7 @@ input {
   &:hover {
     background-color: rgba(255, 255, 255, 0.1);
     box-shadow: inset 0 2px 20px 0 rgba(123, 123, 123, 1);
-    transition: 500ms all;
+    transition: 300ms all;
   }
 }
 
@@ -250,6 +250,6 @@ textarea {
   &:hover {
     background-color: rgba(255, 255, 255, 0.1);
     box-shadow: inset 0 2px 20px 0 rgba(123, 123, 123, 1);
-    transition: 500ms all;
+    transition: 300ms all;
   }
 } */

@@ -15,7 +15,8 @@ export default function AboutPage() {
           className="max-w-5xl mx-auto text-center"
         >
           <h1 className="md:text-5xl text-3xl text-start md:text-center font-extrabold mb-4 tracking-wide">
-            About <span className="text-cyan-400">Us</span>
+            Bizim{" "}
+            <span className="text-secondary">haqqımızda</span>
           </h1>
           <p className="dark:text-gray-300 text-gray-700 md:text-lg text-start md:text-center ">
             The foundation of the &ldquo;Kholmili&ldquo; company was laid in
@@ -37,7 +38,7 @@ export default function AboutPage() {
             transition={{ delay: 0.3, duration: 0.8 }}
             className="backdrop-blur-lg bg-white/10 rounded-2xl md:p-8 p-4 shadow-xl border dark:border-white/10 border-black/20"
           >
-            <h2 className="md:text-3xl text-lg font-semibold mb-4 dark:text-cyan-300 text-cyan-600">
+            <h2 className="md:text-3xl text-lg font-semibold mb-4 text-secondary">
               Niyə biz ?
             </h2>
             <p className="dark:text-gray-300 text-gray-700">
@@ -56,7 +57,7 @@ export default function AboutPage() {
             transition={{ delay: 0.3, duration: 0.8 }}
             className="backdrop-blur-lg bg-white/10 rounded-2xl md:p-8 p-4 shadow-xl border dark:border-white/10 border-black/20"
           >
-            <h2 className="md:text-3xl text-lg font-semibold mb-4 dark:text-cyan-300 text-cyan-600">
+            <h2 className="md:text-3xl text-lg font-semibold mb-4 text-secondary">
               Sifariş ver
             </h2>
             <div className="flex flex-col gap-4 items-center">
@@ -75,7 +76,7 @@ export default function AboutPage() {
                   window.location.href = PATHS.ORDER;
                 }}
               >
-                <RGBButton >Sifariş ver</RGBButton>
+                <RGBButton>Sifariş ver</RGBButton>
               </div>
             </div>
           </motion.div>
@@ -86,7 +87,7 @@ export default function AboutPage() {
           transition={{ delay: 0.3, duration: 0.8 }}
           className="backdrop-blur-lg bg-white/10 rounded-2xl p-4 md:p-8 shadow-xl border dark:border-white/10 border-black/20 mt-10"
         >
-          <h2 className="text-3xl font-semibold mb-4  dark:text-cyan-300 text-cyan-600">
+          <h2 className="text-3xl font-semibold mb-4  text-secondary">
             Bizim məkanımız
           </h2>
           <p className="dark:text-gray-300 text-gray-700 mb-4">

@@ -39,11 +39,7 @@ const Navbar = () => {
         <div className="hidden lg:flex space-x-4">
           <Link href={PATHS.HOME}>
             <Button
-              className={
-                pathname === PATHS.HOME
-                  ? "glass-button dark:!text-cyan-400 border border-[rgb(0,0,0,0.3)] dark:border-[rgb(255,255,255,0.1)]"
-                  : ""
-              }
+              className={pathname === PATHS.HOME ? "glass-button  " : ""}
               variant="ghost"
             >
               Əsas
@@ -52,11 +48,7 @@ const Navbar = () => {
 
           <Link href={PATHS.CATALOGUE}>
             <Button
-              className={
-                pathname === PATHS.CATALOGUE
-                  ? "glass-button dark:!text-cyan-400 border border-[rgb(0,0,0,0.3)] dark:border-[rgb(255,255,255,0.1)]"
-                  : ""
-              }
+              className={pathname === PATHS.CATALOGUE ? "glass-button  " : ""}
               variant="ghost"
             >
               Kataloq
@@ -65,11 +57,7 @@ const Navbar = () => {
 
           <Link href={PATHS.ABOUT}>
             <Button
-              className={
-                pathname === PATHS.ABOUT
-                  ? "glass-button dark:!text-cyan-400 border border-[rgb(0,0,0,0.3)] dark:border-[rgb(255,255,255,0.1)]"
-                  : ""
-              }
+              className={pathname === PATHS.ABOUT ? "glass-button  " : ""}
               variant="ghost"
             >
               Haqqımızda
@@ -78,11 +66,7 @@ const Navbar = () => {
 
           <Link href={PATHS.CONTACT}>
             <Button
-              className={
-                pathname === PATHS.CONTACT
-                  ? "glass-button dark:!text-cyan-400 border border-[rgb(0,0,0,0.3)] dark:border-[rgb(255,255,255,0.1)]"
-                  : ""
-              }
+              className={pathname === PATHS.CONTACT ? "glass-button  " : ""}
               variant="ghost"
             >
               Əlaqə
@@ -92,11 +76,7 @@ const Navbar = () => {
         <div className="hidden lg:flex w-32 justify-end md:gap-4">
           <Link href={PATHS.ORDER}>
             <Button
-              className={
-                pathname === PATHS.ORDER
-                  ? "glass-button dark:!text-cyan-400 border border-[rgb(0,0,0,0.3)] dark:border-[rgb(255,255,255,0.1)]"
-                  : ""
-              }
+              className={pathname === PATHS.ORDER ? "glass-button  " : ""}
               variant="ghost"
             >
               Sifariş ver
@@ -105,11 +85,8 @@ const Navbar = () => {
 
           <Link href={PATHS.LOGIN}>
             <Button
-              className={
-                pathname != PATHS.LOGIN
-                  ? " bg-white text-black hover:bg-white/70"
-                  : "text-white"
-              }
+              variant="ghost"
+              className={pathname === PATHS.LOGIN ? "glass-button  " : ""}
             >
               Daxil ol
             </Button>
@@ -186,7 +163,7 @@ const Navbar = () => {
                   </Link>
 
                   <div>
-                    <ThemeToggle  />
+                    <ThemeToggle />
                   </div>
                 </div>
               </motion.aside>
