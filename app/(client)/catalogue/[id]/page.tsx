@@ -10,10 +10,10 @@ const ProductDetailPage = async (props: ProjectDetailPageProps) => {
   const { id } = await props.params;
   const product = products.find((p) => p.id == Number(id));
   return (
-    <div className=" min-h-[70vh] my-10  text-white">
+    <div className=" min-h-[70vh] my-10 ">
       <div className="container mx-auto rounded-xl  p-6 md:p-8 pb-20 ">
         <div className="flex flex-col md:flex-row gap-6 md:gap-20 items-center justify-between">
-          <div className="md:w-1/2 w-full glass dark:!bg-black duration-300 relative aspect-video overflow-hidden rounded-lg shadow">
+          <div className="md:w-1/2 w-full glass dark:!bg-blackk duration-300 relative aspect-video overflow-hidden rounded-lg shadow">
             <RenderIf condition={!!product?.image}>
               <Image
                 src={product!.image}

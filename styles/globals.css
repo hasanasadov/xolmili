@@ -52,6 +52,10 @@
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
 
+  --bgfrom: #ededed;
+  --bgvia: #ededed;
+  --bgto: #ededed;
+
   --primary: oklch(52% 0.105 223.128);
   --primary-foreground: oklch(0.985 0 0);
   --secondary: oklch(60.9% 0.126 221.723);
@@ -86,6 +90,14 @@
   --card-foreground: oklch(0.985 0 0);
   --popover: oklch(0.205 0 0);
   --popover-foreground: oklch(0.985 0 0);
+
+  /* --bgfrom: #2b28e5;
+  --bgvia: #000000;
+  --bgto: #2b28e5; */
+  --bgvia: #010046;
+  --bgfrom: #000000;
+  --bgto: #000000;
+
   --primary: oklch(0.922 0 0);
   --primary-foreground: oklch(0.205 0 0);
   --secondary: oklch(78.9% 0.154 211.53);
@@ -122,8 +134,36 @@
   }
 }
 
+@font-face {
+  font-family: "greycliff";
+  src: url("/fonts/greycliff/fonnts.com-Greycliff_CF_Regular.otf")
+    format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "greycliff";
+  src: url("/fonts/greycliff/fonnts.com-Greycliff_CF_Bold.otf")
+    format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 body {
+  scroll-behavior: smooth;
   transition: all 0.5s ease-in-out;
+  font-family: "greycliff", sans-serif;
+  overflow-x: hidden;
+
+  background: linear-gradient(
+    to bottom right,
+    var(--bgfrom) 0%,
+    var(--bgvia) 50%,
+    var(--bgto) 100%
+  );
 }
 
 .hoverUnderline:hover {

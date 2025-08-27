@@ -64,7 +64,7 @@ export default function OrderForm() {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className="md:min-h-[90vh]  bg-gradient-to-br dark:from-black from-white dark:via-gray-900 via-gray-200 dark:to-black to-white dark:text-white text-black px-6 py-16 flex items-center justify-evenly md:flex-row flex-col gap-10"
+      className="md:min-h-[90vh]  px-6 py-16 flex items-center justify-evenly md:flex-row flex-col gap-10"
     >
       <div className="h-full flex items-start text-3xl">
         Fikirlərinizi bizimlə rahatlıqla bölüşə bilərsiniz

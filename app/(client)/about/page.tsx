@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 
 export default function AboutPage() {
   return (
-    <div className="min-h-[90vh] bg-gradient-to-br dark:from-black from-white dark:via-gray-900 via-gray-200 dark:to-black to-white  dark:text-white  text-black px-6 py-16">
+    <div className="min-h-[90vh]  px-6 py-16">
       <div className="container mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 60 }}
@@ -14,9 +14,8 @@ export default function AboutPage() {
           transition={{ duration: 1 }}
           className="max-w-5xl mx-auto text-center"
         >
-          <h1 className="md:text-5xl text-3xl text-start md:text-center font-extrabold mb-4 tracking-wide">
-            Bizim{" "}
-            <span className="text-secondary">haqqımızda</span>
+          <h1 className="md:text-5xl text-3xl text-start md:text-center font-extrabold mb-4 tracking-wide text-black dark:text-white">
+            Bizim <span className="text-secondary">haqqımızda</span>
           </h1>
           <p className="dark:text-gray-300 text-gray-700 md:text-lg text-start md:text-center ">
             The foundation of the &ldquo;Kholmili&ldquo; company was laid in

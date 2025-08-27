@@ -55,7 +55,7 @@ export default function CataloguePage() {
   }, [selectedProduct, isMobile]);
 
   return (
-    <div className="min-h-[90vh] flex flex-col md:flex-row overflow-hidden bg-gradient-to-br from-gray-100 to-white dark:from-gray-900 dark:to-black text-black dark:text-white">
+    <div className="min-h-[90vh] flex flex-col md:flex-row overflow-hidden ">
       <aside className="w-full md:w-1/3 lg:w-1/4 h-auto md:h-screen overflow-y-auto border-b md:border-b-0 md:border-r border-gray-300 dark:border-gray-700 p-6">
         <h2 className="text-2xl font-bold mb-4 text-center text-secondary">
           Kataloq
@@ -64,7 +64,7 @@ export default function CataloguePage() {
         {/* Axtarış sahəsi */}
         <div className="flex items-center gap-2 mb-6">
           <Input
-            className="glass-border"
+            className="glass-border text-primary"
             placeholder="Axtar..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
@@ -77,10 +77,11 @@ export default function CataloguePage() {
             <div
               key={product.id}
               onClick={() => setSelectedProduct(product)}
-              className={`cursor-pointer glass-border p-4 rounded-lg border shadow-sm hover:shadow-md transition-all duration-300 flex flex-col items-center space-y-2 text-center ${
+              className={`cursor-pointer glass-border text-primary p-4 rounded-lg border shadow-sm hover:shadow-md transition-all duration-300 flex flex-col items-center space-y-2 text-center ${
                 selectedProduct?.id === product.id
                   ? "!bg-black/10 dark:!bg-white/10"
-                  : "!bg-white/5 dark:!bg-black/30"
+                  : ""
+                // : "!bg-white/5 dark:!bg-black/30"
               }`}
             >
               <Image
@@ -118,10 +119,7 @@ export default function CataloguePage() {
         )}
       </aside>
 
-      <main
-        ref={detailRef}
-        className="flex-1 p-6 md:p-10 bg-gray-100 dark:bg-gray-950"
-      >
+      <main ref={detailRef} className="flex-1 p-6 md:p-10">
         <RenderIf condition={!!selectedProduct}>
           <ProductDetail product={selectedProduct} />
         </RenderIf>
@@ -146,7 +144,7 @@ const ProductDetail = ({
         {product?.name}
       </h1>
       <div className="grid md:grid-cols-2 gap-6 items-center">
-        <div className="w-full glass dark:!bg-black duration-300 relative aspect-video overflow-hidden rounded-lg shadow">
+        <div className="w-full glass dark:!bg-blackk duration-300 relative aspect-video overflow-hidden rounded-lg shadow">
           <RenderIf condition={!!product?.image}>
             <Image
               src={product!.image}

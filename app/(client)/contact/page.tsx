@@ -57,7 +57,7 @@ export default function ContactPage() {
   };
 
   return (
-    <div className=" min-h-screen bg-gradient-to-br dark:from-black from-white dark:via-gray-900 via-gray-200 dark:to-black to-white dark:text-white px-6 py-16 ">
+    <div className=" min-h-screen px-6 py-16 ">
       <div className="container mx-auto ">
         <motion.div
           initial={{ opacity: 0, y: 60 }}
