@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion";
-import { Menu, X, ChevronRight } from "lucide-react";
+import { Menu, X, ChevronRight, Sparkles } from "lucide-react";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
@@ -16,11 +16,6 @@ const NAV_LINKS = [
   { href: PATHS.CATALOGUE, label: "Kataloq" },
   { href: PATHS.ABOUT, label: "Haqqımızda" },
   { href: PATHS.CONTACT, label: "Əlaqə" },
-];
-
-const ACTION_LINKS = [
-  { href: PATHS.ORDER, label: "Sifariş ver" },
-  { href: PATHS.LOGIN, label: "Daxil ol" },
 ];
 
 export default function Navbar() {
@@ -47,11 +42,11 @@ export default function Navbar() {
   return (
     <>
       <motion.nav
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
+        initial={{ y: -100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
         className={`
-          fixed top-0 left-0 right-0 z-50 transition-all duration-300
+          fixed top-0 left-0 right-0 z-50 transition-all duration-500
           ${isScrolled
             ? "bg-background/80 backdrop-blur-xl border-b border-border/50 shadow-lg"
             : "bg-transparent"
@@ -73,6 +68,17 @@ export default function Navbar() {
             <MobileMenuButton isOpen={isOpen} onClick={() => setIsOpen(!isOpen)} />
           </div>
         </div>
+
+        {/* Animated border on scroll */}
+        <motion.div
+          className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent"
+          initial={{ scaleX: 0, opacity: 0 }}
+          animate={{ 
+            scaleX: isScrolled ? 1 : 0, 
+            opacity: isScrolled ? 1 : 0 
+          }}
+          transition={{ duration: 0.5 }}
+        />
       </motion.nav>
 
       {/* Mobile Menu */}
@@ -108,7 +114,12 @@ function Logo() {
         />
       </motion.div>
       {/* Hover glow effect */}
-      <div className="absolute inset-0 bg-primary/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10" />
+      <motion.div 
+        className="absolute inset-0 bg-primary/20 blur-xl -z-10"
+        initial={{ opacity: 0 }}
+        whileHover={{ opacity: 1 }}
+        transition={{ duration: 0.3 }}
+      />
     </Link>
   );
 }
@@ -119,7 +130,7 @@ interface DesktopNavProps {
 
 function DesktopNav({ pathname }: DesktopNavProps) {
   return (
-    <div className="hidden lg:flex items-center gap-1">
+    <div className="hidden lg:flex items-center gap-1 glass px-2 py-1.5">
       {NAV_LINKS.map((link) => (
         <NavLink key={link.href} href={link.href} isActive={pathname === link.href}>
           {link.label}
@@ -140,7 +151,7 @@ function NavLink({ href, isActive, children }: NavLinkProps) {
     <Link href={href}>
       <motion.div
         className={`
-          relative px-4 py-2 rounded-xl text-sm font-medium transition-colors
+          relative px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300
           ${isActive
             ? "text-primary"
             : "text-foreground/70 hover:text-foreground"
@@ -155,15 +166,15 @@ function NavLink({ href, isActive, children }: NavLinkProps) {
           <motion.div
             layoutId="activeNav"
             className="absolute inset-0 bg-primary/10 rounded-xl -z-10"
-            transition={{ type: "spring", stiffness: 300, damping: 30 }}
+            transition={{ type: "spring", stiffness: 400, damping: 30 }}
           />
         )}
         {/* Hover underline */}
         <motion.div
-          className="absolute bottom-0 left-1/2 -translate-x-1/2 h-0.5 bg-primary rounded-full"
+          className="absolute bottom-0 left-1/2 -translate-x-1/2 h-0.5 bg-gradient-to-r from-primary to-secondary rounded-full"
           initial={{ width: 0 }}
-          whileHover={{ width: "50%" }}
-          transition={{ duration: 0.2 }}
+          whileHover={{ width: "60%" }}
+          transition={{ duration: 0.3 }}
         />
       </motion.div>
     </Link>
@@ -175,20 +186,40 @@ interface DesktopActionsProps {
 }
 
 function DesktopActions({ pathname }: DesktopActionsProps) {
+  const isOrderPage = pathname === PATHS.ORDER;
+
   return (
-    <div className="hidden lg:flex items-center gap-2">
-      {ACTION_LINKS.map((link) => (
-        <Link key={link.href} href={link.href}>
+    <div className="hidden lg:flex items-center gap-3">
+      <Link href={PATHS.ORDER}>
+        <motion.div
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+        >
           <Button
-            variant={pathname === link.href ? "default" : "ghost"}
             size="sm"
-            className={pathname === link.href ? "bg-primary text-primary-foreground" : ""}
+            className={`
+              relative overflow-hidden group
+              ${isOrderPage 
+                ? "bg-primary text-primary-foreground" 
+                : "bg-primary/90 text-primary-foreground hover:bg-primary"
+              }
+            `}
           >
-            {link.label}
+            <span className="relative z-10 flex items-center gap-2">
+              <Sparkles className="w-4 h-4" />
+              Sifariş ver
+            </span>
+            {/* Shine effect */}
+            <motion.div
+              className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
+              initial={{ x: "-100%" }}
+              whileHover={{ x: "100%" }}
+              transition={{ duration: 0.6 }}
+            />
           </Button>
-        </Link>
-      ))}
-      <div className="ml-2">
+        </motion.div>
+      </Link>
+      <div className="ml-1">
         <ThemeToggle />
       </div>
     </div>
@@ -253,7 +284,7 @@ function MobileMenu({ isOpen, pathname, onClose }: MobileMenuProps) {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 bg-background/80 backdrop-blur-sm z-40 lg:hidden"
+            className="fixed inset-0 bg-background/80 backdrop-blur-md z-40 lg:hidden"
             onClick={onClose}
           />
 
@@ -268,11 +299,18 @@ function MobileMenu({ isOpen, pathname, onClose }: MobileMenuProps) {
             <div className="flex flex-col h-full p-6">
               {/* Header */}
               <div className="flex items-center justify-between mb-8">
-                <span className="text-lg font-semibold">Menu</span>
+                <motion.span 
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.1 }}
+                  className="text-lg font-semibold"
+                >
+                  Menu
+                </motion.span>
                 <motion.button
                   onClick={onClose}
                   className="w-10 h-10 flex items-center justify-center rounded-xl glass"
-                  whileHover={{ scale: 1.05 }}
+                  whileHover={{ scale: 1.05, rotate: 90 }}
                   whileTap={{ scale: 0.95 }}
                 >
                   <X className="w-5 h-5" />
@@ -293,28 +331,36 @@ function MobileMenu({ isOpen, pathname, onClose }: MobileMenuProps) {
                   </MobileNavLink>
                 ))}
 
-                <div className="h-px bg-border my-4" />
+                <motion.div 
+                  initial={{ opacity: 0, scaleX: 0 }}
+                  animate={{ opacity: 1, scaleX: 1 }}
+                  transition={{ delay: 0.3 }}
+                  className="h-px bg-gradient-to-r from-transparent via-border to-transparent my-6" 
+                />
 
-                {ACTION_LINKS.map((link, index) => (
-                  <MobileNavLink
-                    key={link.href}
-                    href={link.href}
-                    isActive={pathname === link.href}
-                    onClick={onClose}
-                    index={NAV_LINKS.length + index}
-                  >
-                    {link.label}
-                  </MobileNavLink>
-                ))}
+                <MobileNavLink
+                  href={PATHS.ORDER}
+                  isActive={pathname === PATHS.ORDER}
+                  onClick={onClose}
+                  index={NAV_LINKS.length}
+                  highlight
+                >
+                  Sifariş ver
+                </MobileNavLink>
               </div>
 
               {/* Footer */}
-              <div className="pt-6 border-t border-border/50">
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4 }}
+                className="pt-6 border-t border-border/50"
+              >
                 <div className="flex items-center justify-between">
                   <span className="text-sm text-muted-foreground">Tema</span>
                   <ThemeToggle />
                 </div>
-              </div>
+              </motion.div>
             </div>
           </motion.div>
         </>
@@ -329,29 +375,40 @@ interface MobileNavLinkProps {
   onClick: () => void;
   index: number;
   children: React.ReactNode;
+  highlight?: boolean;
 }
 
-function MobileNavLink({ href, isActive, onClick, index, children }: MobileNavLinkProps) {
+function MobileNavLink({ href, isActive, onClick, index, children, highlight }: MobileNavLinkProps) {
   return (
     <motion.div
-      initial={{ opacity: 0, x: 20 }}
+      initial={{ opacity: 0, x: 40 }}
       animate={{ opacity: 1, x: 0 }}
-      transition={{ delay: index * 0.05 }}
+      transition={{ delay: index * 0.08, duration: 0.4 }}
     >
       <Link href={href} onClick={onClick}>
         <motion.div
           className={`
-            flex items-center justify-between p-4 rounded-xl transition-colors
+            flex items-center justify-between p-4 rounded-xl transition-all duration-300
             ${isActive
               ? "bg-primary/10 text-primary"
-              : "hover:bg-muted"
+              : highlight
+                ? "bg-primary/5 hover:bg-primary/10"
+                : "hover:bg-muted"
             }
           `}
-          whileHover={{ x: 5 }}
+          whileHover={{ x: 8, scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
         >
-          <span className="font-medium">{children}</span>
-          <ChevronRight className={`w-4 h-4 ${isActive ? "text-primary" : "text-muted-foreground"}`} />
+          <span className={`font-medium ${highlight ? "flex items-center gap-2" : ""}`}>
+            {highlight && <Sparkles className="w-4 h-4 text-primary" />}
+            {children}
+          </span>
+          <motion.div
+            initial={{ x: 0 }}
+            whileHover={{ x: 4 }}
+          >
+            <ChevronRight className={`w-4 h-4 ${isActive ? "text-primary" : "text-muted-foreground"}`} />
+          </motion.div>
         </motion.div>
       </Link>
     </motion.div>
