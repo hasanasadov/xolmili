@@ -1,20 +1,23 @@
 "use client";
 
-import { redirect, useRouter } from "next/navigation";
-import { PasswordOutlined } from "@mui/icons-material";
-import { AuthValueTypesLogin } from "@/types";
-import { handleLogin } from "@/services/auth";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { motion, AnimatePresence } from "framer-motion";
 import { useFormik } from "formik";
-import { User2Icon } from "lucide-react";
-import { Loader } from "lucide-react";
+import { User2, Lock, Loader2, ArrowRight, Eye, EyeOff } from "lucide-react";
 import { toast } from "sonner";
-// import GoogleBtn from "@/components/shared/GoogleBtn";
-import React, { useState } from "react";
+import Link from "next/link";
 
-const LoginPage = () => {
+import { handleLogin } from "@/services/auth";
+import { AuthValueTypesLogin } from "@/types";
+import { Button } from "@/components/ui/button";
+import { HoverScale } from "@/components/shared/Animations";
+
+export default function LoginPage() {
   const router = useRouter();
   const [errorMessages, setErrorMessages] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   const formik = useFormik({
     initialValues: {
@@ -23,8 +26,8 @@ const LoginPage = () => {
     },
     validate: (values: AuthValueTypesLogin) => {
       const errors = {} as AuthValueTypesLogin;
-      if (!values.username) errors.username = "Username is required.";
-      if (!values.password) errors.password = "Password is required.";
+      if (!values.username) errors.username = "İstifadəçi adı tələb olunur";
+      if (!values.password) errors.password = "Şifrə tələb olunur";
       return errors;
     },
     onSubmit: async (values: AuthValueTypesLogin) => {
@@ -40,118 +43,245 @@ const LoginPage = () => {
 
         if (!res.success) {
           setErrorMessages([res.message]);
-          toast.error("Login failed");
+          toast.error("Giriş uğursuz oldu");
           return;
         }
-        if (res.success) {
-          localStorage.setItem("access_token", res.accessToken);
-          formik.resetForm();
-          toast.success("Login successful");
-          setTimeout(() => {
-            router.push("/");
-          }, 500);
-        }
-      } catch (error) {
+
+        localStorage.setItem("access_token", res.accessToken);
+        formik.resetForm();
+        toast.success("Uğurla daxil oldunuz");
+        setTimeout(() => router.push("/"), 500);
+      } catch {
         setLoading(false);
-        setErrorMessages([
-          "An unexpected error occurred. Please try again later.",
-        ]);
-        console.error(error);
+        setErrorMessages(["Xəta baş verdi. Yenidən cəhd edin."]);
       }
     },
   });
 
   return (
-    <div className="w-full p-6 flex flex-col justify-between dark:!text-white !text-black">
-      <div className="text-2xl text-gray-800 dark:text-white mb-4 relative font-extrabold">
-        Login
-        <div className="absolute left-0 bottom-0 h-[3px] w-6 bg-green-500"></div>
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+      className="w-full p-8"
+    >
+      {/* Header */}
+      <div className="mb-8">
+        <motion.h1
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.1 }}
+          className="text-3xl font-bold mb-2"
+        >
+          Xoş Gəlmisiniz
+        </motion.h1>
+        <motion.p
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2 }}
+          className="text-muted-foreground"
+        >
+          Hesabınıza daxil olun
+        </motion.p>
+        <motion.div
+          initial={{ scaleX: 0 }}
+          animate={{ scaleX: 1 }}
+          transition={{ delay: 0.3 }}
+          className="h-1 w-12 bg-gradient-to-r from-primary to-secondary rounded-full mt-4 origin-left"
+        />
       </div>
 
-      <form onSubmit={formik.handleSubmit}>
-        <div className="mt-6">
-          {loading && (
-            <div className="flex justify-center items-center my-[56px]">
-              <Loader className="animate-spin text-green-500" size={48} />
-            </div>
-          )}
-          {!loading && (
-            <>
-              <div className="flex items-center relative mb-4">
-                <User2Icon className="text-green-500 text-lg absolute left-4 w-6" />
-                <input
-                  type="text"
-                  name="username"
-                  onChange={formik.handleChange}
-                  value={formik.values.username}
-                  placeholder="Enter your username"
-                  className="h-12 w-full text-black dark:text-white pl-12 pr-4 text-lg font-bold border-b-2 border-gray-300 focus:outline-none focus:border-b-green-500 transition duration-300"
-                  required
-                  aria-label="Username"
-                  onBlur={() => formik.setFieldTouched("username", true)} // Mark as touched on blur
-                />
-              </div>
-              {formik.touched.username && formik.errors.username && (
-                <div className="text-red-500 text-sm mb-4">
-                  {formik.errors.username}
-                </div>
-              )}
+      {/* Form */}
+      <form onSubmit={formik.handleSubmit} className="space-y-5">
+        {/* Username Field */}
+        <FormField
+          icon={User2}
+          name="username"
+          type="text"
+          placeholder="İstifadəçi adı"
+          value={formik.values.username}
+          error={formik.touched.username && formik.errors.username ? formik.errors.username : undefined}
+          onChange={formik.handleChange}
+          onBlur={() => formik.setFieldTouched("username", true)}
+          delay={0.1}
+        />
 
-              <div className="flex items-center relative mb-6">
-                <PasswordOutlined className="text-green-500 text-lg absolute left-4 w-6" />
-                <input
-                  type="password"
-                  name="password"
-                  onChange={formik.handleChange}
-                  value={formik.values.password}
-                  placeholder="Enter your password"
-                  className="h-12 w-full text-black dark:text-white pl-12 pr-4 text-lg font-bold border-b-2 border-gray-300 focus:outline-none focus:border-b-green-500 transition duration-300"
-                  required
-                  aria-label="Password"
-                  onBlur={() => formik.setFieldTouched("password", true)} // Mark as touched on blur
-                />
-              </div>
-              {formik.touched.password && formik.errors.password && (
-                <div className="text-red-500 text-sm mb-4">
-                  {formik.errors.password}
-                </div>
-              )}
-            </>
-          )}
-          {errorMessages.length > 0 &&
-            errorMessages.map((error, index) => (
-              <div className="text-red-500 text-sm" key={index}>
-                {error}
-              </div>
-            ))}
-          <div className="text-sm text-gray-600 dark:text-white mt-2">
-            <a href="/forgotPassword">Forgot password?</a>
-          </div>
-          <div className="mt-6">
+        {/* Password Field */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2 }}
+        >
+          <div className="relative group">
+            <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground group-focus-within:text-primary transition-colors" />
+            <input
+              name="password"
+              type={showPassword ? "text" : "password"}
+              placeholder="Şifrə"
+              value={formik.values.password}
+              onChange={formik.handleChange}
+              onBlur={() => formik.setFieldTouched("password", true)}
+              className={`
+                w-full h-12 pl-12 pr-12 rounded-xl bg-background/50 border
+                transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary/20
+                ${formik.touched.password && formik.errors.password
+                  ? "border-destructive focus:border-destructive"
+                  : "border-border focus:border-primary"
+                }
+              `}
+            />
             <button
-              disabled={loading}
-              type="submit"
-              className="w-full bg-green-500 text-white py-3 px-4 cursor-pointer hover:bg-green-700 transition duration-300 disabled:bg-gray-400"
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+              className="absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
             >
-              Log In
+              {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
             </button>
           </div>
-          {/* <GoogleBtn /> */}
-        </div>
+          <AnimatePresence>
+            {formik.touched.password && formik.errors.password && (
+              <motion.p
+                initial={{ opacity: 0, y: -5 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -5 }}
+                className="text-destructive text-sm mt-2"
+              >
+                {formik.errors.password}
+              </motion.p>
+            )}
+          </AnimatePresence>
+        </motion.div>
+
+        {/* Error Messages */}
+        <AnimatePresence>
+          {errorMessages.length > 0 && (
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              className="p-3 rounded-xl bg-destructive/10 border border-destructive/20"
+            >
+              {errorMessages.map((error, index) => (
+                <p key={index} className="text-destructive text-sm">
+                  {error}
+                </p>
+              ))}
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* Forgot Password Link */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.3 }}
+          className="text-right"
+        >
+          <Link
+            href="/forgotPassword"
+            className="text-sm text-muted-foreground hover:text-primary transition-colors"
+          >
+            Şifrəni unutdunuz?
+          </Link>
+        </motion.div>
+
+        {/* Submit Button */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4 }}
+        >
+          <HoverScale>
+            <Button
+              type="submit"
+              size="lg"
+              className="w-full group btn-shine bg-primary text-primary-foreground"
+              disabled={loading}
+            >
+              {loading ? (
+                <>
+                  <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                  Daxil olunur...
+                </>
+              ) : (
+                <>
+                  Daxil ol
+                  <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
+                </>
+              )}
+            </Button>
+          </HoverScale>
+        </motion.div>
       </form>
 
-      <div className="text-center mt-6">
-        Don{"'"}t have an account?{" "}
-        <button
-          // disabled={loading}
-          className="text-green-500 cursor-pointer hover:underline"
-          onClick={() => redirect("/register")}
-        >
-          Sign up now
-        </button>
-      </div>
-    </div>
+      {/* Register Link */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.5 }}
+        className="text-center mt-8"
+      >
+        <p className="text-muted-foreground">
+          Hesabınız yoxdur?{" "}
+          <Link href="/register" className="text-primary hover:underline font-medium">
+            Qeydiyyatdan keçin
+          </Link>
+        </p>
+      </motion.div>
+    </motion.div>
   );
-};
+}
 
-export default LoginPage;
+interface FormFieldProps {
+  icon: typeof User2;
+  name: string;
+  type: string;
+  placeholder: string;
+  value: string;
+  error?: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onBlur: () => void;
+  delay: number;
+}
+
+function FormField({ icon: Icon, name, type, placeholder, value, error, onChange, onBlur, delay }: FormFieldProps) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay }}
+    >
+      <div className="relative group">
+        <Icon className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground group-focus-within:text-primary transition-colors" />
+        <input
+          name={name}
+          type={type}
+          placeholder={placeholder}
+          value={value}
+          onChange={onChange}
+          onBlur={onBlur}
+          className={`
+            w-full h-12 pl-12 pr-4 rounded-xl bg-background/50 border
+            transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary/20
+            ${error
+              ? "border-destructive focus:border-destructive"
+              : "border-border focus:border-primary"
+            }
+          `}
+        />
+      </div>
+      <AnimatePresence>
+        {error && (
+          <motion.p
+            initial={{ opacity: 0, y: -5 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -5 }}
+            className="text-destructive text-sm mt-2"
+          >
+            {error}
+          </motion.p>
+        )}
+      </AnimatePresence>
+    </motion.div>
+  );
+}
