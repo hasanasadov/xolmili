@@ -177,7 +177,7 @@ function ProcessSection() {
         </ScrollReveal>
 
         <StaggerContainer className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6" staggerDelay={0.1}>
-          {PROCESS.map((p, i) => (
+          {PROCESS.map((p) => (
             <StaggerItem key={p.step}>
               <HoverLift>
                 <div className="surface p-6 text-center h-full group hover:border-highlight transition-all">
@@ -386,7 +386,7 @@ function SideInfo() {
             "Fabriklərin etibarlı seçimi",
             "Azərbaycanın hər yerinə çatdırılma",
             "Xüsusi ölçü hesablamaları",
-          ].map((item, i) => (
+          ].map((item) => (
             <div key={item} className="flex items-start gap-3 py-3 border-b border-border last:border-0">
               <div className="w-6 h-6 rounded-full bg-highlight-soft flex items-center justify-center shrink-0 mt-0.5">
                 <CheckCircle className="w-3.5 h-3.5 text-highlight" />

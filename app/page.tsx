@@ -152,7 +152,7 @@ function HeroSection() {
             transition={{ duration: 0.6, delay: 1.5 }}
             className="flex flex-wrap gap-8 mt-16 pt-8 border-t border-border"
           >
-            {STATS.map((stat, i) => (
+            {STATS.map((stat) => (
               <div key={stat.label} className="text-left">
                 <div className="text-3xl md:text-4xl font-bold text-foreground">
                   <Counter to={stat.value} suffix={stat.suffix} duration={2} />
