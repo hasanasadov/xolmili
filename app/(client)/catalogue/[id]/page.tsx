@@ -3,46 +3,51 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowLeft, ArrowRight, Package, ShoppingCart, Info, ChevronRight } from "lucide-react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import { use } from "react";
 
 import { PATHS, products } from "@/constants";
-import { Button } from "@/components/ui/button";
-import { FloatingOrbs } from "@/components/shared/ParticleBackground";
-import { ScrollReveal, HoverScale, fadeInLeft, fadeInRight } from "@/components/shared/Animations";
+import { ScrollReveal, StaggerContainer, StaggerItem } from "@/components/shared/Animations";
 import RenderIf from "@/lib/RenderIf";
 import { ProjectDetailPageProps } from "@/types";
 
 export default function ProductDetailPage(props: ProjectDetailPageProps) {
-  const params = use(props.params);
-  const { id } = params;
+  const { id } = use(props.params);
   const product = products.find((p) => p.id === Number(id));
-  const relatedProducts = products.filter((p) => p.id !== Number(id)).slice(0, 3);
+  const related = products.filter((p) => p.id !== Number(id)).slice(0, 3);
 
   return (
-    <div className="relative min-h-screen overflow-hidden">
-      <FloatingOrbs />
+    <div className="min-h-screen">
+      {/* Breadcrumb */}
+      <div className="border-b border-border">
+        <div className="max-w-6xl mx-auto px-6 lg:px-8 py-4">
+          <motion.nav
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="flex items-center gap-2 text-xs text-muted-foreground"
+            aria-label="Breadcrumb"
+          >
+            <Link href={PATHS.HOME} className="hover:text-foreground transition-colors">
+              Əsas
+            </Link>
+            <span>/</span>
+            <Link href={PATHS.CATALOGUE} className="hover:text-foreground transition-colors">
+              Kataloq
+            </Link>
+            <span>/</span>
+            <span className="text-foreground">{product?.name ?? "Məhsul"}</span>
+          </motion.nav>
+        </div>
+      </div>
 
-      <div className="container mx-auto py-12 px-4">
-        {/* Breadcrumb */}
-        <Breadcrumb productName={product?.name} />
-
-        {/* Main Content */}
+      <div className="max-w-6xl mx-auto px-6 lg:px-8 py-12">
         <RenderIf condition={!!product}>
-          <div className="grid lg:grid-cols-2 gap-10 mt-8">
-            {/* Image Section */}
-            <ScrollReveal variants={fadeInLeft}>
-              <ProductImage product={product!} />
-            </ScrollReveal>
-
-            {/* Details Section */}
-            <ScrollReveal variants={fadeInRight} delay={0.2}>
-              <ProductInfo product={product!} />
-            </ScrollReveal>
-          </div>
-
-          {/* Related Products */}
-          <RelatedProducts products={relatedProducts} />
+          {product && (
+            <>
+              <ProductMain product={product} />
+              {related.length > 0 && <RelatedSection products={related} />}
+            </>
+          )}
         </RenderIf>
 
         <RenderIf condition={!product}>
@@ -53,224 +58,126 @@ export default function ProductDetailPage(props: ProjectDetailPageProps) {
   );
 }
 
-function Breadcrumb({ productName }: { productName?: string }) {
+// ===== PRODUCT MAIN =====
+function ProductMain({
+  product,
+}: {
+  product: { id: number; name: string; image: string; description: string };
+}) {
   return (
-    <motion.nav
-      initial={{ opacity: 0, y: -10 }}
-      animate={{ opacity: 1, y: 0 }}
-      className="flex items-center gap-2 text-sm text-muted-foreground"
-    >
-      <Link href={PATHS.HOME} className="hover:text-primary transition-colors">
-        Əsas
-      </Link>
-      <ChevronRight className="w-4 h-4" />
-      <Link href={PATHS.CATALOGUE} className="hover:text-primary transition-colors">
-        Kataloq
-      </Link>
-      <ChevronRight className="w-4 h-4" />
-      <span className="text-foreground font-medium">{productName || "Məhsul"}</span>
-    </motion.nav>
-  );
-}
-
-interface ProductImageProps {
-  product: {
-    image: string;
-    name: string;
-  };
-}
-
-function ProductImage({ product }: ProductImageProps) {
-  return (
-    <motion.div
-      className="glass p-8 h-full"
-      whileHover={{ scale: 1.01 }}
-      transition={{ duration: 0.3 }}
-    >
-      <div className="relative aspect-square rounded-2xl overflow-hidden bg-background/50 border border-border/50 group">
+    <div className="grid lg:grid-cols-2 gap-12 mb-20">
+      {/* Image */}
+      <motion.div
+        initial={{ opacity: 0, x: -24 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.6 }}
+        className="relative aspect-square border border-border bg-muted overflow-hidden"
+      >
         <Image
           src={product.image}
           alt={product.name}
           fill
-          className="object-contain p-8 transition-transform duration-700 group-hover:scale-110"
+          className="object-contain p-10 transition-transform duration-700 hover:scale-105"
         />
-
-        {/* Animated gradient overlay */}
-        <motion.div
-          className="absolute inset-0 bg-gradient-to-br from-primary/5 to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-        />
-
-        {/* Corner decoration */}
-        <div className="absolute top-4 left-4 w-12 h-12 border-l-2 border-t-2 border-primary/30 rounded-tl-lg" />
-        <div className="absolute bottom-4 right-4 w-12 h-12 border-r-2 border-b-2 border-secondary/30 rounded-br-lg" />
-      </div>
-    </motion.div>
-  );
-}
-
-interface ProductInfoProps {
-  product: {
-    id: number;
-    name: string;
-    description: string;
-  };
-}
-
-function ProductInfo({ product }: ProductInfoProps) {
-  return (
-    <div className="glass p-8 h-full flex flex-col">
-      {/* Product badge */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0.9 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ delay: 0.3 }}
-        className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium w-fit mb-4"
-      >
-        <Package className="w-4 h-4" />
-        Məhsul #{product.id}
+        {/* Corner marks */}
+        <div className="absolute top-3 left-3 w-5 h-5 border-t border-l border-foreground/20" />
+        <div className="absolute bottom-3 right-3 w-5 h-5 border-b border-r border-foreground/20" />
       </motion.div>
 
-      {/* Title */}
-      <motion.h1
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.4 }}
-        className="text-3xl md:text-4xl font-bold text-gradient mb-6"
-      >
-        {product.name}
-      </motion.h1>
-
-      {/* Description */}
+      {/* Info */}
       <motion.div
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.5 }}
-        className="flex-1"
+        initial={{ opacity: 0, x: 24 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.6, delay: 0.1 }}
+        className="flex flex-col justify-center"
       >
-        <div className="flex items-center gap-2 mb-3">
-          <Info className="w-5 h-5 text-primary" />
-          <h3 className="font-semibold">Təsvir</h3>
-        </div>
-        <p className="text-muted-foreground leading-relaxed">
-          {product.description}
-          {" "}
-          {product.description}
-          {" "}
-          {product.description}
+        <p className="text-xs uppercase tracking-widest text-muted-foreground mb-4">
+          Məhsul #{String(product.id).padStart(2, "0")}
         </p>
-      </motion.div>
 
-      {/* CTA Buttons */}
-      <motion.div
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.6 }}
-        className="flex flex-wrap gap-4 mt-8 pt-6 border-t border-border/50"
-      >
-        <HoverScale>
-          <Link href={PATHS.ORDER}>
-            <Button size="lg" className="group btn-shine bg-primary text-primary-foreground">
-              <ShoppingCart className="w-4 h-4 mr-2" />
-              Sifariş Ver
-              <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
-            </Button>
-          </Link>
-        </HoverScale>
+        <h1 className="text-3xl sm:text-4xl font-bold text-foreground mb-6 leading-tight">
+          {product.name}
+        </h1>
 
-        <HoverScale>
-          <Link href={PATHS.CATALOGUE}>
-            <Button size="lg" variant="outline" className="glass-button group">
-              <ArrowLeft className="w-4 h-4 mr-2 transition-transform group-hover:-translate-x-1" />
-              Kataloqa Qayıt
-            </Button>
+        <div className="divider mb-6" />
+
+        <div className="mb-8">
+          <p className="text-xs uppercase tracking-widest text-muted-foreground mb-3">
+            Təsvir
+          </p>
+          <p className="text-sm leading-relaxed text-foreground">
+            {product.description}
+          </p>
+        </div>
+
+        <div className="flex flex-col sm:flex-row gap-3">
+          <Link href={PATHS.ORDER} className="btn-elite">
+            Sifariş ver
           </Link>
-        </HoverScale>
+          <Link href={PATHS.CATALOGUE} className="btn-elite-outline">
+            <ArrowLeft className="w-3.5 h-3.5" />
+            Kataloqa qayıt
+          </Link>
+        </div>
       </motion.div>
     </div>
   );
 }
 
-interface RelatedProductsProps {
-  products: Array<{
-    id: number;
-    name: string;
-    image: string;
-    description: string;
-  }>;
-}
-
-function RelatedProducts({ products }: RelatedProductsProps) {
+// ===== RELATED PRODUCTS =====
+function RelatedSection({
+  products: items,
+}: {
+  products: Array<{ id: number; name: string; image: string; description: string }>;
+}) {
   return (
-    <section className="mt-16">
-      <ScrollReveal>
-        <h2 className="text-2xl font-bold mb-8">
-          Digər <span className="text-gradient">Məhsullar</span>
-        </h2>
+    <section>
+      <div className="divider mb-10" />
+      <ScrollReveal className="mb-8">
+        <h2 className="text-xl font-bold text-foreground">Digər Məhsullar</h2>
       </ScrollReveal>
 
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {products.map((product, index) => (
-          <ScrollReveal key={product.id} delay={index * 0.1}>
-            <HoverScale>
-              <Link href={`/catalogue/${product.id}`}>
-                <motion.div
-                  className="glass p-6 h-full group cursor-pointer"
-                  whileHover={{ y: -5 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <div className="relative aspect-square rounded-xl overflow-hidden bg-background/50 mb-4">
-                    <Image
-                      src={product.image}
-                      alt={product.name}
-                      fill
-                      className="object-contain p-4 transition-transform duration-500 group-hover:scale-110"
-                    />
-                  </div>
-                  <h3 className="font-semibold group-hover:text-primary transition-colors mb-2">
-                    {product.name}
-                  </h3>
-                  <p className="text-sm text-muted-foreground line-clamp-2">
-                    {product.description}
+      <StaggerContainer className="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-border" staggerDelay={0.1}>
+        {items.map((p) => (
+          <StaggerItem key={p.id}>
+            <Link href={`/catalogue/${p.id}`} className="block bg-background group">
+              <div className="p-6">
+                <div className="relative aspect-square bg-muted mb-4 overflow-hidden">
+                  <Image
+                    src={p.image}
+                    alt={p.name}
+                    fill
+                    className="object-contain p-4 transition-transform duration-500 group-hover:scale-105"
+                  />
+                </div>
+                <div className="flex items-center justify-between">
+                  <p className="text-sm font-medium text-foreground group-hover:text-muted-foreground transition-colors">
+                    {p.name}
                   </p>
-                </motion.div>
-              </Link>
-            </HoverScale>
-          </ScrollReveal>
+                  <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:translate-x-1 transition-transform" />
+                </div>
+              </div>
+            </Link>
+          </StaggerItem>
         ))}
-      </div>
+      </StaggerContainer>
     </section>
   );
 }
 
+// ===== NOT FOUND =====
 function NotFound() {
   return (
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="min-h-[60vh] flex items-center justify-center"
+      className="min-h-[50vh] flex flex-col items-center justify-center gap-6 text-center"
     >
-      <div className="text-center glass p-12 max-w-md">
-        <motion.div
-          initial={{ scale: 0 }}
-          animate={{ scale: 1 }}
-          transition={{ type: "spring", stiffness: 200 }}
-          className="w-20 h-20 rounded-2xl bg-destructive/10 flex items-center justify-center mx-auto mb-6"
-        >
-          <Package className="w-10 h-10 text-destructive" />
-        </motion.div>
-        <h3 className="text-xl font-semibold mb-2">Məhsul Tapılmadı</h3>
-        <p className="text-muted-foreground mb-6">
-          Axtardığınız məhsul mövcud deyil və ya silinib.
-        </p>
-        <HoverScale>
-          <Link href={PATHS.CATALOGUE}>
-            <Button className="group">
-              <ArrowLeft className="w-4 h-4 mr-2 transition-transform group-hover:-translate-x-1" />
-              Kataloqa Qayıt
-            </Button>
-          </Link>
-        </HoverScale>
-      </div>
+      <p className="text-sm text-muted-foreground">Məhsul tapılmadı</p>
+      <Link href={PATHS.CATALOGUE} className="btn-elite-outline">
+        <ArrowLeft className="w-3.5 h-3.5" />
+        Kataloqa qayıt
+      </Link>
     </motion.div>
   );
 }

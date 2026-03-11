@@ -5,32 +5,25 @@ import Footer from "@/components/shared/Footer";
 import ThemeAndCursorProvider from "@/layouts/ThemeAndCursorProvider";
 
 export const metadata: Metadata = {
-  title: "Xolmili - Rəsmi sayt",
-  description: "Xolmili'nin rəsmi saytına xoş gəlmisiniz",
-  keywords: ["Xolmili", "Xolmili official", "Xolmili site"],
+  title: "Xolmili",
+  description: "Azərbaycanda maşın alətləri hissələrinin satışında lider şirkət. 2010-cu ildən fəaliyyətdə.",
+  keywords: ["Xolmili", "maşın hissələri", "ehtiyat hissələri", "sənaye"],
   robots: "index, follow",
   openGraph: {
-    title: "Xolmili - Rəsmi sayt",
-    description: "Welcome to the official website of Xolmili.",
+    title: "Xolmili",
+    description: "Azərbaycanda maşın alətləri hissələrinin satışında lider şirkət.",
     url: "https://xolmili.vercel.app",
     type: "website",
   },
-  other: {
-    "google-site-verification": "your-verification-code-if-any",
-  },
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html className="" lang="en" suppressHydrationWarning>
-      <body className="min-h-screen  text-white transition duration-500">
+    <html lang="az" suppressHydrationWarning>
+      <body className="min-h-screen bg-background text-foreground antialiased">
         <ThemeAndCursorProvider>
           <Navbar />
-          {children}
+          <main>{children}</main>
           <Footer />
         </ThemeAndCursorProvider>
       </body>
