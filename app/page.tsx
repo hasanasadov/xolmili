@@ -10,7 +10,6 @@ import {
   ScrollReveal,
   AnimatedText,
   BlurReveal,
-  ParallaxScroll,
   StaggerContainer,
   StaggerItem,
   Counter,

@@ -1,8 +1,11 @@
 import type { Metadata } from "next";
+import { Orbitron } from "next/font/google";
 import "@/styles/globals.css";
 import Navbar from "@/components/shared/Navbar";
 import Footer from "@/components/shared/Footer";
 import ThemeAndCursorProvider from "@/layouts/ThemeAndCursorProvider";
+
+const orbitron = Orbitron({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Xolmili",
@@ -20,7 +23,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="az" suppressHydrationWarning>
-      <body className="min-h-screen bg-background text-foreground antialiased">
+      <body className={`${orbitron.className} min-h-screen bg-background text-foreground antialiased`}>
         <ThemeAndCursorProvider>
           <Navbar />
           <main>{children}</main>

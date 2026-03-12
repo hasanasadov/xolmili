@@ -24,13 +24,10 @@ import {
   ScrollReveal,
   StaggerContainer,
   StaggerItem,
-  BlurReveal,
   Counter,
-  RevealLine,
   GradientBlob,
   HoverLift,
 } from "@/components/shared/Animations";
-import { PATHS } from "@/constants";
 
 interface FormData {
   name: string;

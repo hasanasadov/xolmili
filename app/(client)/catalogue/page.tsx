@@ -8,7 +8,7 @@ import { Search, X, ChevronLeft, ChevronRight, ArrowRight, Grid, List, Package }
 
 import { products } from "@/constants/index";
 import { Product } from "@/types";
-import { ScrollReveal, StaggerContainer, StaggerItem, HoverLift, GradientBlob } from "@/components/shared/Animations";
+import { GradientBlob } from "@/components/shared/Animations";
 import RenderIf from "@/lib/RenderIf";
 import { PATHS } from "@/constants";
 
