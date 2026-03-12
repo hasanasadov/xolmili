@@ -16,7 +16,6 @@ import {
   fadeInRight,
   GradientBlob,
   ImageReveal,
-  Floating,
 } from "@/components/shared/Animations";
 import { PATHS } from "@/constants";
 

@@ -7,7 +7,7 @@ import { ArrowLeft, ArrowRight, Package, ChevronRight, ShoppingCart } from "luci
 import { use } from "react";
 
 import { PATHS, products } from "@/constants";
-import { ScrollReveal, StaggerContainer, StaggerItem, HoverLift, GradientBlob, ImageReveal, Floating } from "@/components/shared/Animations";
+import { ScrollReveal, StaggerContainer, StaggerItem, HoverLift, Floating } from "@/components/shared/Animations";
 import RenderIf from "@/lib/RenderIf";
 import { ProjectDetailPageProps } from "@/types";
 
