@@ -36,12 +36,6 @@ export function ThemeToggle() {
           <Moon className="w-5 h-5 !text-blue-600 transition-transform duration-300 hover:!rotate-[-450deg]  " />
         </RenderIf>
       </RenderIf>
-      <span
-        className={`sm:hidden inline ${isDark ? "text-white" : "text-black"} `}
-      >
-        {" "}
-        {isDark ? "Gündüz Modu" : "Gecə Modu"}{" "}
-      </span>{" "}
     </Button>
   );
 }

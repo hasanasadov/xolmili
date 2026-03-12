@@ -43,7 +43,7 @@ export default function Navbar() {
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
-            <Link href={PATHS.HOME} className="relative h-8 w-20 shrink-0">
+            <Link href={PATHS.HOME} className="relative h-8 w-20 shrink-0 scale-150">
               <Image src="/logo.png"      alt="Xolmili" fill className="object-contain dark:hidden" priority />
               <Image src="/logoWhite.png" alt="Xolmili" fill className="object-contain hidden dark:block" priority />
             </Link>
